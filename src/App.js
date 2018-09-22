@@ -1,7 +1,10 @@
 import React, { Component } from 'react'
-import { Link } from '@reach/router'
+import { Link, navigate } from '@reach/router'
 
 import { slide as Menu } from 'react-burger-menu'
+
+import Logo from './Logo'
+import logoImg from './img/logo.png'
 
 class App extends Component {
   render () {
@@ -12,6 +15,7 @@ class App extends Component {
           <Link to='/about'>About Us</Link>
           <Link to='/contact'>Contact Us</Link>
         </Menu>
+        <Logo src={logoImg} alt='Chomok Logo' onClick={e => navigate('/')} />
         <div id='page-content'>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laboriosam,
           modi.
