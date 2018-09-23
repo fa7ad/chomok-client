@@ -1,4 +1,10 @@
+@import '~modern-normalize/modern-normalize.css';
 @import '~antd/dist/antd.css';
+
+body {
+  font-size: 100%;
+  color: #fff;
+}
 
 #page-container {
   height: 100vh;
