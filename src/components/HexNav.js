@@ -2,70 +2,82 @@ import styled from 'react-emotion'
 import { Link } from '@reach/router'
 
 const Container = styled('div')`
-  padding-bottom: 20px;
-  border: 1px solid #000;
-  justify-content: center;
   display: grid;
-  grid-auto-rows: 36px;
+  justify-content: center;
+  grid-auto-rows: 48px;
   grid-template-columns: 1fr 1fr;
   grid-gap: 4px;
-  width: ${p => p.width};
+  padding-bottom: 24px;
   margin: 0 auto;
+  width: 100%;
+  max-width: ${p => p.size};
 `
 
 const Item = styled(Link)`
-  background-color: #333;
-  width: calc(100% - 36px);
-  margin: 0 18px;
-  height: 36px;
+  background-color: #111;
+  width: calc(100% - 48px);
+  z-index: 1;
+  margin: 0 24px;
+  height: 48px;
   color: #fff;
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: transform 250ms ease;
-  z-index: 1;
-  filter: drop-shadow(0 0 2px rgb(130, 130, 130));
+  transition: all 300ms ease;
+  text-transform: uppercase;
+  font-weight: 400;
+  filter: drop-shadow(0 0 1px #333333);
+  visibility: ${p => (!p.children || p.hide ? 'hidden' : 'visible')};
 
-  &,
-  &:before,
-  &:after {
-    &:hover {
-      z-index: 2;
+  &:hover {
+    z-index: 2;
+    &::before,
+    &::after {
+      z-index: -1;
     }
   }
 
+  &,
+  &:hover,
+  &:link,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    color: #fff;
+  }
+
   &:hover {
-    transform: scale(1.1);
+    transform: scale3D(1.1, 1.1, 1.1);
   }
 
   &:before,
   &:after {
     content: '';
     position: absolute;
-    width: 25px;
-    height: 25px;
-    background-color: #333;
+    width: 34px;
+    height: 34px;
+    background-color: #111;
     transform: rotate(45deg);
     z-index: -1;
   }
 
   &::before {
-    left: -13px;
+    left: -17px;
   }
 
   &::after {
-    right: -13px;
+    right: -17px;
   }
 
   &:nth-child(odd) {
-    left: 9px;
+    left: 12px;
   }
 
   &:nth-child(even) {
-    bottom: -20px;
-    left: -9px;
+    bottom: -24px;
+    left: -12px;
   }
 `
 

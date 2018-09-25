@@ -3,7 +3,7 @@ import { partial } from 'ramda'
 import { Link, navigate, Router } from '@reach/router'
 import { slide as Menu } from 'react-burger-menu'
 
-import Spinner from './components/Loading'
+import loading from './components/Loading'
 import Loadable from 'react-loadable'
 
 import Logo from './components/Logo'
@@ -12,8 +12,10 @@ import Row from './components/Row'
 import logoImg from './img/logo.png'
 
 const AsyncHome = Loadable({
-  loading: Spinner,
-  loader: () => import('./components/Home').then(m => m.default)
+  loading,
+  loader () {
+    return import('./components/Home')
+  }
 })
 
 const App = props => (
