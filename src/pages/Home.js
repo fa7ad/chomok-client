@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-import {Link} from '@reach/router'
+import { Link } from '@reach/router'
 
 import { NavContainer, NavItem, hidden } from '../components/HexNav'
 import { Page, Section } from '../components/Layout'
@@ -21,25 +21,26 @@ const Button = styled(Link)`
   border: solid 2px #fff;
   color: #fff;
   transition: all 250ms ease;
+  background-size: 100% 200%;
+  background-image: linear-gradient(to bottom, transparent 50%, white 50%);
 
   &:hover {
-    color: #fff;
-    filter: invert(1);
+    color: #333;
+    background-position: 0 -100%;
   }
 `
 
 export default p => (
   <Page>
     <Section>
-      <NavContainer size='60%'>
-        <NavItem to='/'>Home</NavItem>
-        <NavItem to='/'>Home</NavItem>
+      <NavContainer size='70%'>
+        <NavItem to='/dhanmondi'>Dhanmondi</NavItem>
+        <NavItem to='/zigatola'>Zigatola</NavItem>
         <div className={hidden} />
-        <NavItem to='/'>Home</NavItem>
-        <NavItem to='/'>Home</NavItem>
+        <NavItem to='/banani'>Banani</NavItem>
+        <NavItem to='/gulshan'>Gulshan</NavItem>
         <div className={hidden} />
-        <NavItem to='/'>Home</NavItem>
-        <NavItem to='/'>Home</NavItem>
+        <NavItem to='/mohammadpur'>Mohammadpur</NavItem>
       </NavContainer>
     </Section>
     <Section dark className='hide-phone'>
