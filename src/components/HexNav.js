@@ -1,4 +1,4 @@
-import styled from 'react-emotion'
+import styled, { css } from 'react-emotion'
 import { Link } from '@reach/router'
 
 const Container = styled('div')`
@@ -25,11 +25,12 @@ const Item = styled(Link)`
   justify-content: center;
   align-items: center;
   position: relative;
-  transition: all 300ms ease;
+  transition: all 200ms ease;
   text-transform: uppercase;
   font-weight: 400;
+  font-family: Montserrat, sans-serif;
   filter: drop-shadow(0 0 1px #333333);
-  visibility: ${p => (!p.children || p.hide ? 'hidden' : 'visible')};
+  visibility: ${p => (!p.children || p.no ? 'hidden' : 'visible')};
 
   &:hover {
     z-index: 2;
@@ -49,7 +50,7 @@ const Item = styled(Link)`
   }
 
   &:hover {
-    transform: scale3D(1.1, 1.1, 1.1);
+    transform: scale3D(1.05, 1.05, 1.05);
   }
 
   &:before,
@@ -76,11 +77,15 @@ const Item = styled(Link)`
   }
 
   &:nth-child(even) {
-    bottom: -24px;
+    top: 26px;
     left: -12px;
   }
 `
 
-export { Container as NavContainer, Item as NavItem }
+const hidden = css`
+  visibility: hidden;
+`
 
-export default { Container, Item }
+export { Container as NavContainer, Item as NavItem, hidden }
+
+export default { Container, Item, hidden }

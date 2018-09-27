@@ -1,0 +1,24 @@
+
+body {
+  color: #fff;
+}
+
+#page-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background-image: url('../img/background.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+#page-content {
+  flex-basis: 100%;
+  flex-grow: 1;
+
+  text-align: center;
+}

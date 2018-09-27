@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './index.css'
+import 'antd/dist/antd.css'
+import './styles/burger-menu.css'
+import './styles/index.css'
 
 import App from './App'
 

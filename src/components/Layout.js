@@ -7,7 +7,7 @@ export const Row = styled('div')`
 
   display: flex;
 
-  [role='group'] {
+  div[role='group'] {
     flex-basis: 100%;
 
     display: flex;
@@ -22,7 +22,7 @@ export const Page = styled('div')`
   flex-direction: row;
   align-items: stretch;
 
-  @media screen and (max-width: 480px) {
+  @media screen and (max-width: 640px) {
     .hide-phone {
       display: none;
     }
@@ -38,7 +38,7 @@ export const Section = styled('section')`
   align-items: center;
   transition: all 300ms ease;
 
-  @media (max-width: 480px) {
+  @media (max-width: 640px) {
     flex-basis: 100%;
   }
 
