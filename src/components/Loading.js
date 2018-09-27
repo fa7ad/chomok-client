@@ -1,20 +1,20 @@
 import React from 'react'
-import { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { GridLoader } from 'react-spinners'
 
-const wrapper = css`
+const Wrapper = styled('div')`
   width: 100vw;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-const spinner = css`
+const Spinner = styled(GridLoader)`
   filter: drop-shadow(0 0 5px #fff);
 `
 
 export default p => (
-  <div className={wrapper}>
-    <GridLoader size={50} color='#111' className={spinner} />
-  </div>
+  <Wrapper>
+    <Spinner size={50} color='#111' />
+  </Wrapper>
 )
