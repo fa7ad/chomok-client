@@ -1,4 +1,5 @@
-import styled, { css } from 'react-emotion'
+import React from 'react'
+import styled from 'react-emotion'
 import { Link } from '@reach/router'
 
 const Container = styled('div')`
@@ -13,44 +14,41 @@ const Container = styled('div')`
   max-width: ${p => p.size};
 `
 
-const Item = styled(Link)`
-  background-color: #111;
-  width: calc(100% - 48px);
-  z-index: 1;
+const ItemLink = p => <Link {...p}><div>{p.children}</div></Link>
+
+const Item = styled(ItemLink)`
+  position: relative;
+
   margin: 0 24px;
   height: 48px;
+  width: calc(100% - 48px);
+  z-index: 1;
+
+  display: inline-flex;
+  align-items: center;
+
   color: #fff;
   cursor: pointer;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
+  background-color: #111;
+
   transition: all 200ms ease;
   text-transform: uppercase;
   font-weight: 400;
   font-family: Montserrat, sans-serif;
   filter: drop-shadow(0 0 1px #333333);
-  visibility: ${p => (!p.children || p.no ? 'hidden' : 'visible')};
 
-  &:hover {
-    z-index: 2;
-    &::before,
-    &::after {
-      z-index: -1;
-    }
-  }
 
   &,
   &:hover,
   &:link,
-  &:active,
-  &:focus {
+  &:active {
     text-decoration: none;
     color: #fff;
   }
 
   &:hover {
-    transform: scale3D(1.05, 1.05, 1.05);
+    z-index: 2;
+    transform: scale3D(1.08, 1.08, 1.08);
   }
 
   &:before,
@@ -62,6 +60,19 @@ const Item = styled(Link)`
     background-color: #111;
     transform: rotate(45deg);
     z-index: -1;
+  }
+
+  > div {
+    position: absolute;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+
+    width: 100%;
+    height: 100%;
+    z-index: 1;
   }
 
   &::before {
@@ -82,10 +93,6 @@ const Item = styled(Link)`
   }
 `
 
-const hidden = css`
-  visibility: hidden;
-`
+export { Container as NavContainer, Item as NavItem }
 
-export { Container as NavContainer, Item as NavItem, hidden }
-
-export default { Container, Item, hidden }
+export default { Container, Item }

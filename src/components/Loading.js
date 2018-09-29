@@ -3,7 +3,7 @@ import styled from 'react-emotion'
 import { GridLoader } from 'react-spinners'
 
 const Wrapper = styled('div')`
-  width: 100vw;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,35 +1,36 @@
-import styled from 'react-emotion'
+import React from 'react'
+import PropTypes from 'prop-types'
+import styled, { css, cx } from 'react-emotion'
 
-export const Row = styled('div')`
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+export const cdark = css`
+  background: rgba(0, 0, 0, 0.45);
 
-  display: flex;
+  &:hover {
+    background: rgba(0, 0, 0, 0.6);
+  }
+`
 
-  div[role='group'] {
+export const cnophone = css`
+  @media (max-width: 640px) {
     flex-basis: 100%;
-
-    display: flex;
-    align-items: stretch;
+    display: none;
   }
 `
 
-export const Page = styled('div')`
-  flex-basis: 100%;
+const Sec = ({ dark, nophone, className, ...p }) => (
+  <section
+    className={cx(className, { [cdark]: dark }, { [cnophone]: nophone })}
+    {...p}
+  />
+)
 
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+Sec.propTypes = {
+  dark: PropTypes.bool,
+  nophone: PropTypes.bool,
+  className: PropTypes.string
+}
 
-  @media screen and (max-width: 640px) {
-    .hide-phone {
-      display: none;
-    }
-  }
-`
-
-export const Section = styled('section')`
+export const Section = styled(Sec)`
   flex-basis: 50%;
 
   display: flex;
@@ -37,14 +38,4 @@ export const Section = styled('section')`
   justify-content: center;
   align-items: center;
   transition: all 300ms ease;
-
-  @media (max-width: 640px) {
-    flex-basis: 100%;
-  }
-
-  background: ${p => (p.dark ? 'rgba(0, 0, 0, 0.45)' : 'transparent')};
-
-  &:hover {
-    background: ${p => (p.dark ? 'rgba(0, 0, 0, 0.6)' : 'transparent')};
-  }
 `

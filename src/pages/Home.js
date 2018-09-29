@@ -1,51 +1,34 @@
-import React from 'react'
-import styled from 'react-emotion'
+import React, { Fragment } from 'react'
 
-import { Link } from '@reach/router'
-
-import { NavContainer, NavItem, hidden } from '../components/HexNav'
-import { Page, Section } from '../components/Layout'
-
-const Heading = styled('h1')`
-  font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 900;
-  font-size: 4em;
-  color: #fefefe;
-  text-transform: uppercase;
-`
-
-const Button = styled(Link)`
-  text-transform: uppercase;
-  font-family: Montserrat, sans-serif;
-  padding: 10px;
-  border: solid 2px #fff;
-  color: #fff;
-  transition: all 250ms ease;
-  background-size: 100% 200%;
-  background-image: linear-gradient(to bottom, transparent 50%, white 50%);
-
-  &:hover {
-    color: #333;
-    background-position: 0 -100%;
-  }
-`
+import { Section } from '../components/Layout'
+import { NavContainer, NavItem } from '../components/HexNav'
+import { Heading, Button, Content } from '../components/AboutSection'
 
 export default p => (
-  <Page>
-    <Section>
+  <Fragment>
+    <Section style={p.style}>
       <NavContainer size='70%'>
         <NavItem to='/dhanmondi'>Dhanmondi</NavItem>
         <NavItem to='/zigatola'>Zigatola</NavItem>
-        <div className={hidden} />
+        <div />
         <NavItem to='/banani'>Banani</NavItem>
         <NavItem to='/gulshan'>Gulshan</NavItem>
-        <div className={hidden} />
+        <div />
         <NavItem to='/mohammadpur'>Mohammadpur</NavItem>
       </NavContainer>
     </Section>
-    <Section dark className='hide-phone'>
+    <Section dark nophone style={p.style}>
       <Heading>CHOMOK</Heading>
+      <Content>
+        LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. ALIQUAM LAOREET
+        ARCU URNA, ET PORTA IPSUM ULLAMCORPER VEL. IN BLANDIT ULTRICES ARCU, AC
+        BLANDIT EX MATTIS EU. AENEAN MALESUADA LUCTUS ERAT IN LUCTUS. UT
+        ULLAMCORPER DICTUM ACCUMSAN. DONEC SED LAOREET URNA. ETIAM VESTIBULUM
+        RUTRUM LACUS. MAECENAS RISUS TORTOR, PULVINAR AC FINIBUS UT, LOBORTIS
+        EGET JUSTO. FUSCE ULTRICES ENIM VEL IPSUM BIBENDUM, SED ACCUMSAN METUS
+        DICTUM.
+      </Content>
       <Button to='/about'>Learn more!</Button>
     </Section>
-  </Page>
+  </Fragment>
 )

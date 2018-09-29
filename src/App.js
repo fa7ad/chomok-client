@@ -1,71 +1,82 @@
-import React from 'react'
-import BurgerMenu from 'react-burger-menu'
-import Loadable from 'react-loadable'
-import { Menu, Dropdown } from 'antd'
-import { Link, navigate, Router, Match } from '@reach/router'
+import React, { Fragment } from 'react'
 
-import { partial } from 'ramda'
+import Loadable from 'react-loadable'
+import { Link, navigate, Match } from '@reach/router'
+
+import { Menu, Dropdown } from 'antd'
+import BurgerMenu from 'react-burger-menu'
 
 import Logo from './components/Logo'
-import { Row } from './components/Layout'
+import loading from './components/Loading'
 import UserIcon from './components/UserIcon'
 
-import loading from './components/Loading'
+import Router from './components/TransitionRouter'
+
 import logoImg from './img/logo.png'
 import userImg from './img/user.png'
 
-const AsyncHome = Loadable({
+const Home = Loadable({
   loading,
   loader () {
     return import('./pages/Home')
   }
 })
+const NotFound = Loadable({
+  loading,
+  loader () {
+    return import('./pages/NotFound')
+  }
+})
 
 class App extends React.Component {
   state = {
-    navItems: [['Login', '/login']]
+    navItems: [{ key: 'login', caption: 'Login', link: '/login' }]
   }
 
   render () {
+    const { navItems } = this.state
     const menu = (
       <Menu>
-        {this.state.navItems.map((el, idx) => (
-          <Menu.Item key={idx} onClick={partial(navigate, [el[1]])}>
-            {el[0]}
-          </Menu.Item>
+        {navItems.map(it => (
+          <Menu.Item
+            key={it.key}
+            onClick={e => navigate(it.link)}
+            children={it.caption}
+          />
         ))}
       </Menu>
     )
+
     return (
-      <div id='page-container'>
-        <BurgerMenu.slide
-          outerContainerId='page-container'
-          pageWrapId='page-content'>
+      <Fragment>
+        <BurgerMenu.slide outerContainerId='root' pageWrapId='page'>
           <Link to='/'>Home</Link>
           <Link to='/about'>About Us</Link>
           <Link to='/contact'>Contact Us</Link>
         </BurgerMenu.slide>
 
-        <Logo
-          src={logoImg}
-          alt='Chomok Logo'
-          onClick={partial(navigate, ['/'])}
-        />
         <Match path='/login'>
           {p =>
             !!p.match || (
-              <Dropdown path='/!login' overlay={menu} trigger={['click']}>
-                <UserIcon alt='User Icon' src={userImg} />
-              </Dropdown>
+              <Fragment>
+                <Logo
+                  src={logoImg}
+                  alt='Chomok Logo'
+                  onClick={e => navigate('/')}
+                />
+                <Dropdown path='/!login' overlay={menu} trigger={['click']}>
+                  <UserIcon alt='User Icon' src={userImg} />
+                </Dropdown>
+              </Fragment>
             )
           }
         </Match>
-        <Row id='page-content'>
-          <Router primary>
-            <AsyncHome path='/' />
-          </Router>
-        </Row>
-      </div>
+
+        <Router id='page'>
+          <Home path='/' />
+          <NotFound default />
+        </Router>
+      </Fragment>
     )
   }
 }

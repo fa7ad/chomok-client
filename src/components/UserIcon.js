@@ -6,6 +6,7 @@ export default styled('img')`
   cursor: pointer;
   top: 10px;
   right: 10px;
+  z-index: 2;
 
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.25);
   border-radius: 50%;
