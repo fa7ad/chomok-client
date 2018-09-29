@@ -1,4 +1,18 @@
 {
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ],
+    [
+      "@babel/preset-react",
+      {
+        "pragmaFrag": "React.Fragment"
+      }
+    ]
+  ],
   "plugins": [
     "@babel/plugin-proposal-class-properties",
     "react-hot-loader/babel"

@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { hot } from 'react-hot-loader'
 
 import Loadable from 'react-loadable'
@@ -49,7 +49,7 @@ class App extends React.Component {
     )
 
     return (
-      <Fragment>
+      <>
         <BurgerMenu.slide outerContainerId='root' pageWrapId='page'>
           <Link to='/'>Home</Link>
           <Link to='/about'>About Us</Link>
@@ -60,7 +60,7 @@ class App extends React.Component {
           path='/login'
           children={p =>
             !!p.match || (
-              <Fragment>
+              <>
                 <Logo
                   src={logoImg}
                   alt='Chomok Logo'
@@ -69,7 +69,7 @@ class App extends React.Component {
                 <Dropdown path='/!login' overlay={menu} trigger={['click']}>
                   <UserIcon alt='User Icon' src={userImg} />
                 </Dropdown>
-              </Fragment>
+              </>
             )
           }
         />
@@ -78,7 +78,7 @@ class App extends React.Component {
           <Home path='/' navItems={[{ name: 'Zigatola', id: 'xyziggs' }]} />
           <NotFound default />
         </Router>
-      </Fragment>
+      </>
     )
   }
 }
