@@ -38,4 +38,7 @@ export const Section = styled(Sec)`
   justify-content: center;
   align-items: center;
   transition: all 300ms ease;
+  @media (max-width: 640px) {
+    flex-basis: 100%;
+  }
 `

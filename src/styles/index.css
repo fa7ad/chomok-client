@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5 {
 
 .slide-enter.slide-enter-active {
   opacity: 1;
-  transition: opacity 250ms ease-in;
+  transition: opacity 150ms ease-in;
 }
 
 .slide-exit {

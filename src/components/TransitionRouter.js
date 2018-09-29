@@ -4,17 +4,17 @@ import { Location, Router } from '@reach/router'
 import { TransitionGroup, CSSTransition } from 'react-transition-group'
 
 const TransitionRouter = ({ children, ...p }) => (
-  <Location>
-    {({ location }) => (
+  <Location
+    children={({ location }) => (
       <TransitionGroup className='transition-group'>
-        <CSSTransition key={location.key} classNames='fade' timeout={300}>
+        <CSSTransition key={location.key} classNames='fade' timeout={100}>
           <Router location={location} className='router' {...p}>
             {children}
           </Router>
         </CSSTransition>
       </TransitionGroup>
     )}
-  </Location>
+  />
 )
 
 TransitionRouter.propTypes = {

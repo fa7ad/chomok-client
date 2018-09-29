@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import { hot } from 'react-hot-loader'
 
 import Loadable from 'react-loadable'
 import { Link, navigate, Match } from '@reach/router'
@@ -55,8 +56,9 @@ class App extends React.Component {
           <Link to='/contact'>Contact Us</Link>
         </BurgerMenu.slide>
 
-        <Match path='/login'>
-          {p =>
+        <Match
+          path='/login'
+          children={p =>
             !!p.match || (
               <Fragment>
                 <Logo
@@ -70,10 +72,10 @@ class App extends React.Component {
               </Fragment>
             )
           }
-        </Match>
+        />
 
         <Router id='page'>
-          <Home path='/' />
+          <Home path='/' navItems={[{ name: 'Zigatola', id: 'xyziggs' }]} />
           <NotFound default />
         </Router>
       </Fragment>
@@ -81,4 +83,4 @@ class App extends React.Component {
   }
 }
 
-export default App
+export default hot(module)(App)
