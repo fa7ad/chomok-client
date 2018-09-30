@@ -5,11 +5,13 @@ import 'antd/dist/antd.css'
 import './styles/burger-menu.css'
 import './styles/index.css'
 
-function renderApp () {
-  const App = require('./App').default
-  ReactDOM.render(<App />, document.querySelector('#root'))
+import App from './App'
+
+const render = Component => () =>
+  ReactDOM.render(<Component />, document.querySelector('#root'))
+
+render(App)()
+
+if (module.hot) {
+  module.hot.accept('./App', render(App))
 }
-
-renderApp()
-
-module.hot.accept(renderApp)

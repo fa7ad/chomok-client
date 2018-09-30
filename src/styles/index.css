@@ -34,6 +34,13 @@ h1, h2, h3, h4, h5 {
   flex-direction: row;
 }
 
+@media (max-width: 640px) {
+  #page {
+    flex-wrap: wrap;
+    padding-top: 85px;
+  }
+}
+
 .transition-group {
   position: relative;
 }

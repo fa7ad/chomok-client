@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Section } from '../components/Layout'
 import { NavContainer, NavItem } from '../components/HexNav'
@@ -9,10 +9,10 @@ const Home = ({ navItems, style }) => (
     <Section style={style}>
       <NavContainer size='70%'>
         {navItems.map((it, idx) => (
-          <React.Fragment key={it.id}>
-            {idx > 0 && idx % 3 === 0 && <div />}
-            <NavItem to={`/offer/${it.id}`}>{it.name}</NavItem>
-          </React.Fragment>
+          <Fragment key={it._id}>
+            {idx > 0 && idx % 3 === 0 ? <div /> : null}
+            <NavItem to={`/offer/${it.name}`}>{it.name}</NavItem>
+          </Fragment>
         ))}
       </NavContainer>
     </Section>

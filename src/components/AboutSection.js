@@ -30,5 +30,5 @@ export const Content = styled('div')`
   text-align: justify;
   text-transform: uppercase;
   font-family: Montserrat, sans-serif;
-  margin-bottom: .5em;
+  margin-bottom: 1.5em;
 `

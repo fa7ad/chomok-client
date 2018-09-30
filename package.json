@@ -15,12 +15,13 @@
     "react-dom": "^16.5.1",
     "react-emotion": "^9.2.10",
     "react-hot-loader": "^4.3.11",
+    "react-icons": "^3.1.0",
     "react-loadable": "^5.5.0",
     "react-spinners": "^0.4.5",
     "react-transition-group": "^2.5.0"
   },
   "scripts": {
-    "start": "parcel index.html",
+    "start": "node bin/parcel",
     "build": "parcel build index.html --no-cache --no-source-maps"
   },
   "devDependencies": {
@@ -37,6 +38,12 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
+    "express": "^4.16.3",
+    "http-proxy-middleware": "^0.19.0",
     "parcel-bundler": "^1.10.1"
+  },
+  "proxy": {
+    "path": "/api",
+    "target": "http://localhost:3333/api"
   }
 }

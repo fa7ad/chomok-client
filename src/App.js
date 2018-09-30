@@ -1,53 +1,29 @@
-import React from 'react'
 import { hot } from 'react-hot-loader'
-
-import Loadable from 'react-loadable'
+import React, { PureComponent } from 'react'
 import { Link, navigate, Match } from '@reach/router'
 
+// UI components
 import { Menu, Dropdown } from 'antd'
 import BurgerMenu from 'react-burger-menu'
 
+// Custom components
 import Logo from './components/Logo'
-import loading from './components/Loading'
 import UserIcon from './components/UserIcon'
-
 import Router from './components/TransitionRouter'
 
+// Routes wrapped with react-loadable
+import { Home, NotFound, Offer } from './asyncPages'
+
+// Resources
 import logoImg from './img/logo.png'
 import userImg from './img/user.png'
 
-const Home = Loadable({
-  loading,
-  loader () {
-    return import('./pages/Home')
-  }
-})
-const NotFound = Loadable({
-  loading,
-  loader () {
-    return import('./pages/NotFound')
-  }
-})
-
-class App extends React.Component {
+class App extends PureComponent {
   state = {
-    navItems: [{ key: 'login', caption: 'Login', link: '/login' }]
+    loggedIn: false
   }
 
   render () {
-    const { navItems } = this.state
-    const menu = (
-      <Menu>
-        {navItems.map(it => (
-          <Menu.Item
-            key={it.key}
-            onClick={e => navigate(it.link)}
-            children={it.caption}
-          />
-        ))}
-      </Menu>
-    )
-
     return (
       <>
         <BurgerMenu.slide outerContainerId='root' pageWrapId='page'>
@@ -56,31 +32,49 @@ class App extends React.Component {
           <Link to='/contact'>Contact Us</Link>
         </BurgerMenu.slide>
 
-        <Match
-          path='/login'
-          children={p =>
-            !!p.match || (
-              <>
-                <Logo
-                  src={logoImg}
-                  alt='Chomok Logo'
-                  onClick={e => navigate('/')}
-                />
-                <Dropdown path='/!login' overlay={menu} trigger={['click']}>
-                  <UserIcon alt='User Icon' src={userImg} />
-                </Dropdown>
-              </>
-            )
-          }
-        />
+        <Match path='/login'>{this.getLogoAndUser(this.state.loggedIn)}</Match>
 
         <Router id='page'>
-          <Home path='/' navItems={[{ name: 'Zigatola', id: 'xyziggs' }]} />
+          <Home path='/' />
+          <Offer path='/offer/:zone' />
           <NotFound default />
         </Router>
       </>
     )
   }
+
+  navigate = addr => e => {
+    e.preventDefault()
+    navigate(addr)
+  }
+
+  getLogoAndUser = loggedIn => props => {
+    if (props.match) return null
+    return (
+      <>
+        <Logo src={logoImg} alt='Chomok Logo' onClick={this.navigate('/')} />
+        <Dropdown
+          path='/!login'
+          overlay={this.getMenuItems(loggedIn)}
+          trigger={['click']}>
+          <UserIcon alt='User Icon' src={userImg} />
+        </Dropdown>
+      </>
+    )
+  }
+
+  getMenuItems = loggedIn => (
+    <Menu>
+      {loggedIn ? (
+        <>
+          <Menu.Item onClick={this.navigate('/admin')}>Settings</Menu.Item>
+          <Menu.Item onClick={this.navigate('/logout')}>Logout</Menu.Item>
+        </>
+      ) : (
+        <Menu.Item onClick={this.navigate('/login')}>Login</Menu.Item>
+      )}
+    </Menu>
+  )
 }
 
 export default hot(module)(App)
