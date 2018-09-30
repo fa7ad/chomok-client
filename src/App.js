@@ -44,7 +44,6 @@ class App extends PureComponent {
   }
 
   navigate = addr => e => {
-    e.preventDefault()
     navigate(addr)
   }
 

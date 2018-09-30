@@ -42,3 +42,22 @@ export const Section = styled(Sec)`
     flex-basis: 100%;
   }
 `
+
+export const Button = styled('button')`
+text-transform: uppercase;
+font-family: Montserrat, sans-serif;
+padding: 10px;
+border: solid 2px #fff;
+color: #fff;
+cursor: pointer;
+outline: none;
+transition: all 250ms ease;
+background-color: transparent;
+background-size: 100% 200%;
+background-image: linear-gradient(to bottom, transparent 50%, white 50%);
+
+&:hover {
+  color: #333;
+  background-position: 0 -100%;
+}
+`
