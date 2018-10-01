@@ -39,6 +39,9 @@ h1, h2, h3, h4, h5 {
     flex-wrap: wrap;
     padding-top: 85px;
   }
+  #page.admin {
+    padding-top: 0;
+  }
 }
 
 .transition-group {
@@ -64,4 +67,8 @@ h1, h2, h3, h4, h5 {
 
 .slide-exit {
   opacity: 0;
+}
+
+#page.admin {
+  color: #111111;
 }

@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Loadable from 'react-loadable'
 import loading from './components/Loading'
 
@@ -24,4 +22,14 @@ export const Offer = Loadable({
 export const NotFound = Loadable({
   loading,
   loader: _ => import('./pages/NotFound')
+})
+
+export const Admin = Loadable({
+  loading,
+  loader: _ => import('./pages/Admin')
+})
+
+export const Login = Loadable({
+  loading,
+  loader: _ => import('./pages/Login')
 })

@@ -1,5 +1,5 @@
-import React, { Fragment } from 'react'
-import PropTypes from 'prop-types'
+import { Fragment } from 'react'
+
 import { Section } from '../components/Layout'
 import { NavContainer, NavItem } from '../components/HexNav'
 import { Heading, Button, Content } from '../components/AboutSection'

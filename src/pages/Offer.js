@@ -1,8 +1,6 @@
-import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+import { IoIosPin, IoIosArrowRoundDown } from 'react-icons/io'
 import styled, { css, cx } from 'react-emotion'
 
-import { IoIosPin } from 'react-icons/io'
 import { Section, Button } from '../components/Layout'
 
 import wheel from '../img/wheelofluck.png'
@@ -27,31 +25,36 @@ const Zone = styled('div')`
   }
 `
 
-const HexImg = styled('img')`
+const HexImg = styled('div')`
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  background-image: url(${p => p['data-bg']});
   min-height: ${p => p['data-size']};
   width: ${p => p['data-size']};
+  background-image: ${p => `url(${p['data-bg']})`};
   background-position: center center;
-  background-size: cover;
+  background-size: 100%;
+  transition: background-size 150ms ease;
   &:hover {
-    background-size: 150%;
+    background-size: 120%;
   }
 `
 
 const Wheel = styled('img')`
   position: relative;
   width: 80%;
-  &::before {
-    content: '';
-    width: 100px;
-    height: 200px;
-    display: block;
-    left: calc(50% - 5px);
-    top: 0;
-    position: absolute;
-    background-color: red;
-  }
+  transform: rotate(143deg);
+`
+
+const WheelWrapper = styled('div')`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const WheelPin = styled(IoIosArrowRoundDown)`
+  position: relative;
+  top: 42px;
+  z-index: 2
 `
 
 const spin = css`
@@ -59,10 +62,10 @@ const spin = css`
   transform-origin: center center;
   @keyframes spin {
     from {
-      transform: rotate(0);
+      transform: rotate(143deg);
     }
     to {
-      transform: rotate(360deg);
+      transform: rotate(503deg);
     }
   }
 `
@@ -82,22 +85,25 @@ class Offer extends PureComponent {
             <IoIosPin />
             <span>{zone}</span>
           </Zone>
-          <HexImg
-            src={this.state.offer.image}
-            alt={this.state.offer.partner.name}
-          />
+          <HexImg data-bg={this.state.offer.image} data-size='360px' />
           <div>
             <div>SPIN THE WHEEL TO GET YOUR % OFF!</div>
             <Button onClick={this.spin}>Spin the wheel!</Button>
           </div>
           <div />
+          <div />
+          <div />
         </Section>
         <Section style={style}>
-          <Wheel
-            className={cx({ [spin]: this.state.spinning })}
-            src={wheel}
-            alt='wheel'
-          />
+          <WheelWrapper>
+            <WheelPin color='#ff1744' size={72} />
+            <Wheel
+              className={cx({ [spin]: this.state.spinning })}
+              src={wheel}
+              alt='wheel'
+              onAnimationEnd={this.stopSpin}
+            />
+          </WheelWrapper>
         </Section>
       </>
     )
@@ -114,9 +120,10 @@ class Offer extends PureComponent {
   spin = e => {
     e.preventDefault()
     this.setState({ spinning: true })
-    setTimeout(() => {
-      this.setState({ spinning: false })
-    }, 1000)
+  }
+
+  stopSpin = e => {
+    this.setState({ spinning: false })
   }
 
   static propTypes = {

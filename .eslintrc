@@ -1,7 +1,14 @@
 {
   "extends": ["standard", "standard-react"],
   "env": {
-    "browser": true
+    "browser": true,
+    "node": true
   },
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "globals": {
+    "React": true,
+    "PropTypes": true,
+    "PureComponent": true,
+    "Component": true
+  }
 }
