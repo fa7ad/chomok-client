@@ -74,7 +74,7 @@ class App extends PureComponent {
         const menuItems = loggedIn.ok
           ? this.menu.slice(1)
           : this.menu.slice(0, 1)
-        if (loggedIn && loggedIn.type !== 'admin') menuItems.splice(0, 1)
+        if (loggedIn.ok && loggedIn.type !== 'admin') menuItems.splice(0, 1)
         this.setState({ loggedIn, menuItems })
       })
       .catch(e => {
