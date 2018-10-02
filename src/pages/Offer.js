@@ -70,7 +70,7 @@ const spin = css`
   }
 `
 
-class Offer extends PureComponent {
+class Offer extends React.PureComponent {
   state = {
     offer: null,
     spinning: false

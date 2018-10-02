@@ -26,7 +26,7 @@ const Box = styled.form`
   align-items: center;
 `
 
-class Login extends Component {
+class Login extends React.PureComponent {
   state = {
     username: '',
     password: '',

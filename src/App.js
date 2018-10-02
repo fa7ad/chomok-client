@@ -6,26 +6,64 @@ import BurgerMenu from 'react-burger-menu'
 
 // Custom components
 import Logo from './components/Logo'
+import loading from './components/Loading'
 import UserIcon from './components/UserIcon'
 import Router from './components/TransitionRouter'
 
 // Routes wrapped with react-loadable
-import {
-  Home,
-  NotFound,
-  Offer,
-  Admin,
-  Login,
-  ZonesAdmin,
-  OffersAdmin,
-  AddOfferAdmin
-} from './asyncPages'
+import Loadable from 'react-loadable'
 
 // Resources
 import logoImg from './img/logo.png'
 import userImg from './img/user.png'
 
-class App extends PureComponent {
+const Home = Loadable.Map({
+  loading,
+  loader: {
+    Home: () => import('./pages/Home'),
+    navItems: () => fetch('/api/zones/').then(r => r.json())
+  },
+  render (loaded, props) {
+    const Home = loaded.Home.default
+    const navItems = loaded.navItems.data
+    return <Home {...props} navItems={navItems} />
+  }
+})
+
+const Offer = Loadable({
+  loading,
+  loader: _ => import('./pages/Offer')
+})
+
+const NotFound = Loadable({
+  loading,
+  loader: _ => import('./pages/NotFound')
+})
+
+const Admin = Loadable({
+  loading,
+  loader: _ => import('./pages/Admin')
+})
+
+const Login = Loadable({
+  loading,
+  loader: _ => import('./pages/Login')
+})
+
+const OffersAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Offers')
+})
+const AddOfferAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/AddOffer')
+})
+const ZonesAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Zones')
+})
+
+class App extends React.PureComponent {
   logout = e => {
     fetch('/api/logout', { credentials: 'include' })
       .then(r => r.json())

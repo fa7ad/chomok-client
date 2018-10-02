@@ -1,18 +1,18 @@
 // presets
 const presetConf = {
-  '@babel/preset-env': { useBuiltIns: 'usage' },
+  '@babel/preset-env': { useBuiltIns: 'usage', targets: '>10%' },
   '@babel/preset-react': { pragmaFrag: 'React.Fragment' }
 }
 
 // plugins
 const pluginConf = {
   '@babel/plugin-proposal-class-properties': {},
-  'emotion': {},
+  emotion: {},
+  import: { libraryName: 'antd', style: 'css' },
   'auto-import': {
     declarations: [
       {
         default: 'React',
-        members: ['Component', 'PureComponent'],
         path: 'react'
       },
       {

@@ -1,7 +1,7 @@
 import { List, Avatar, Button, Tag } from 'antd'
 import { navigate } from '@reach/router'
 
-class AdminOffersPage extends Component {
+class AdminOffersPage extends React.PureComponent {
   state = {
     offers: [],
     loading: true

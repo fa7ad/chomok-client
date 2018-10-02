@@ -1,7 +1,7 @@
 import { List, Button, Tag } from 'antd'
 import { navigate } from '@reach/router'
 
-class AdminZones extends Component {
+class AdminZones extends React.PureComponent {
   state = {
     offers: [],
     loading: true

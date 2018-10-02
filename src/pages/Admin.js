@@ -13,7 +13,7 @@ const Logo = styled('img')`
 
 const { Header, Content, Footer, Sider } = Layout
 
-class Admin extends PureComponent {
+class Admin extends React.PureComponent {
   state = {
     collapsed: false
   }
