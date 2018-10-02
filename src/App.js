@@ -2,7 +2,7 @@ import { navigate, Link, Location, Redirect } from '@reach/router'
 
 // UI components
 import { Menu, Dropdown } from 'antd'
-import BurgerMenu from 'react-burger-menu'
+import BurgerMenu from 'react-burger-menu/lib/menus/slide'
 
 // Custom components
 import Logo from './components/Logo'
@@ -155,11 +155,11 @@ class App extends React.PureComponent {
 
   getBurgerMenu = ({ Location }) =>
     !/admin/.test(location.href) ? (
-      <BurgerMenu.slide outerContainerId='root' pageWrapId='page'>
+      <BurgerMenu outerContainerId='root' pageWrapId='page'>
         <Link to='/'>Home</Link>
         <Link to='/about'>About Us</Link>
         <Link to='/contact'>Contact Us</Link>
-      </BurgerMenu.slide>
+      </BurgerMenu>
     ) : null
 
   adminPage = page => {

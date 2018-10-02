@@ -1,6 +1,10 @@
 // presets
 const presetConf = {
-  '@babel/preset-env': { useBuiltIns: 'usage', targets: '>10%' },
+  '@babel/preset-env': {
+    useBuiltIns: 'usage',
+    targets: '>10%',
+    modules: false
+  },
   '@babel/preset-react': { pragmaFrag: 'React.Fragment' }
 }
 
@@ -8,7 +12,7 @@ const presetConf = {
 const pluginConf = {
   '@babel/plugin-proposal-class-properties': {},
   emotion: {},
-  import: { libraryName: 'antd', style: 'css' },
+  import: { libraryName: 'antd', libraryDirectory: 'es', style: 'css' },
   'auto-import': {
     declarations: [
       {

@@ -1,4 +1,4 @@
-import { IoIosPin, IoIosArrowRoundDown } from 'react-icons/io'
+import { Icon } from 'antd'
 import styled, { css, cx } from 'react-emotion'
 
 import { Section, Button } from '../components/Layout'
@@ -25,36 +25,37 @@ const Zone = styled('div')`
   }
 `
 
-const HexImg = styled('div')`
+const HexImg = styled.div`
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   min-height: ${p => p['data-size']};
   width: ${p => p['data-size']};
   background-image: ${p => `url(${p['data-bg']})`};
   background-position: center center;
-  background-size: 100%;
+  background-size: auto 100%;
+  background-repeat: no-repeat;
   transition: background-size 150ms ease;
   &:hover {
-    background-size: 120%;
+    background-size: auto 120%;
   }
 `
 
-const Wheel = styled('img')`
+const Wheel = styled.img`
   position: relative;
   width: 80%;
   transform: rotate(143deg);
 `
 
-const WheelWrapper = styled('div')`
+const WheelWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 `
 
-const WheelPin = styled(IoIosArrowRoundDown)`
+const WheelPin = styled(Icon)`
   position: relative;
   top: 42px;
-  z-index: 2
+  z-index: 2;
 `
 
 const spin = css`
@@ -82,10 +83,13 @@ class Offer extends React.PureComponent {
       <>
         <Section dark style={style} className={jcsb}>
           <Zone>
-            <IoIosPin />
+            <Icon
+              type='pushpin'
+              style={{ transform: 'rotateY(180deg)', margin: '0 5px' }}
+            />
             <span>{zone}</span>
           </Zone>
-          <HexImg data-bg={this.state.offer.image} data-size='360px' />
+          <HexImg data-bg={this.state.offer.image} data-size='40vmin' />
           <div>
             <div>SPIN THE WHEEL TO GET YOUR % OFF!</div>
             <Button onClick={this.spin}>Spin the wheel!</Button>
@@ -96,7 +100,10 @@ class Offer extends React.PureComponent {
         </Section>
         <Section style={style}>
           <WheelWrapper>
-            <WheelPin color='#ff1744' size={72} />
+            <WheelPin
+              style={{ color: '#d12', fontSize: '48px' }}
+              type='caret-down'
+            />
             <Wheel
               className={cx({ [spin]: this.state.spinning })}
               src={wheel}
