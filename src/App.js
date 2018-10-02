@@ -10,10 +10,16 @@ import UserIcon from './components/UserIcon'
 import Router from './components/TransitionRouter'
 
 // Routes wrapped with react-loadable
-import { Home, NotFound, Offer, Admin, Login } from './asyncPages'
-import OffersAdmin from './pages/_admin/Offers'
-import AddOffer from './pages/_admin/AddOffer'
-import AdminZones from './pages/_admin/Zones'
+import {
+  Home,
+  NotFound,
+  Offer,
+  Admin,
+  Login,
+  ZonesAdmin,
+  OffersAdmin,
+  AddOfferAdmin
+} from './asyncPages'
 
 // Resources
 import logoImg from './img/logo.png'
@@ -125,8 +131,8 @@ class App extends PureComponent {
     }
     if (page === 'home') return <h1>:)</h1>
     if (page === 'offers') return <OffersAdmin />
-    if (page === 'add-offer') return <AddOffer />
-    if (page === 'zones') return <AdminZones />
+    if (page === 'add-offer') return <AddOfferAdmin />
+    if (page === 'zones') return <ZonesAdmin />
   }
 }
 

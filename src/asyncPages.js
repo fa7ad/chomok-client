@@ -33,3 +33,16 @@ export const Login = Loadable({
   loading,
   loader: _ => import('./pages/Login')
 })
+
+export const OffersAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Offers')
+})
+export const AddOfferAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/AddOffer')
+})
+export const ZonesAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Zones')
+})
