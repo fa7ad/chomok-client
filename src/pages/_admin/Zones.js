@@ -1,7 +1,7 @@
-import { List, Avatar, Button, Tag } from 'antd'
+import { List, Button, Tag } from 'antd'
 import { navigate } from '@reach/router'
 
-class AdminOffersPage extends Component {
+class AdminZones extends Component {
   state = {
     offers: [],
     loading: true
@@ -23,7 +23,7 @@ class AdminOffersPage extends Component {
   }
 
   componentDidMount () {
-    fetch('/api/offers', { credentials: 'include' })
+    fetch('/api/zones', { credentials: 'include' })
       .then(r => {
         if (r.status === 401) navigate('/login')
         return r.json()
@@ -45,7 +45,6 @@ class AdminOffersPage extends Component {
         </Button>
       ]}>
       <List.Item.Meta
-        avatar={<Avatar src={item.image} size='large' shape='square' />}
         title={this.getItemTitle(item)}
         description={this.getItemDesc(item)}
         style={this.listStyle}
@@ -54,32 +53,19 @@ class AdminOffersPage extends Component {
   )
 
   getItemTitle = item => (
-    <>
-      <Tag color='red'>
-        <b>Name:</b> {item.partner.name}
-      </Tag>
-      <Tag color='orange'>
-        <b>Zone:</b> {item.zone.division + '/' + item.zone.name}
-      </Tag>
-    </>
+    <Tag color='red'>
+      <b>Name:</b> {item.name}
+    </Tag>
   )
 
   getItemDesc = item => (
-    <>
-      <Tag color='magenta'>
-        <b>Date: </b> {item.date}
-      </Tag>
-      <Tag color='blue'>
-        <b>Request:</b> {item.reqBy.length}
-      </Tag>
-      <Tag color='green'>
-        <b>Used:</b> {item.useBy.length}
-      </Tag>
-    </>
+    <Tag color='blue'>
+      <b>Division:</b> {item.division}
+    </Tag>
   )
 
   deleteItem = (id, idx) => e => {
-    fetch('/api/offers/' + id, {
+    fetch('/api/zones/' + id, {
       method: 'DELETE',
       credentials: 'include'
     })
@@ -101,4 +87,4 @@ class AdminOffersPage extends Component {
   }
 }
 
-export default AdminOffersPage
+export default AdminZones

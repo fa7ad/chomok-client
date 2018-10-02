@@ -6082,6 +6082,11 @@ react-emotion@^9.1.1, react-emotion@^9.2.10:
     babel-plugin-emotion "^9.2.11"
     create-emotion-styled "^9.2.8"
 
+react-flip-move@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/react-flip-move/-/react-flip-move-3.0.2.tgz#2f6f16ca6cb0a8490fba15a98b3440a76127e825"
+  integrity sha512-mWqUd2HTkRUmSBVPoh78JFKgjx192rPamnSRFeFCH6709NzhTx8xrIsD6u+GAMesn0D1USwkozoArwZcUn4JKA==
+
 react-hot-loader@^4.3.11:
   version "4.3.11"
   resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.3.11.tgz#fe5cf7be7700c249b58293f977c1e6e0900f0d87"
@@ -6098,6 +6103,14 @@ react-icons@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/react-icons/-/react-icons-3.1.0.tgz#004bc8d8b64a5480cdebd86ccb72ba5930b0e434"
   integrity sha512-kz0Dg1pEY+Ln0zcHYmBfx75pWz4U1kvCGku+QdwZkaIrCK+UQhPd69oLwik0KW5KpNhWHed0aMtAx6DnBhfIxQ==
+
+react-images-upload@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/react-images-upload/-/react-images-upload-1.2.3.tgz#bfa3a21c9be3f3653e5626de495a930583a67449"
+  integrity sha512-+FVKACKiIe3uL0e4iPAzqZui+YKP6/aXbpe+Ui6NA08bppc36y45qqxaiCdda/mlqJ7WpJopp7GB92bC/uHHnA==
+  dependencies:
+    react "^16.2.0"
+    react-flip-move "^3.0.1"
 
 react-lazy-load@^3.0.12:
   version "3.0.13"
@@ -6152,7 +6165,7 @@ react-transition-group@^2.5.0:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react@^16.5.1:
+react@^16.2.0, react@^16.5.1:
   version "16.5.2"
   resolved "https://registry.yarnpkg.com/react/-/react-16.5.2.tgz#19f6b444ed139baa45609eee6dc3d318b3895d42"
   integrity sha512-FDCSVd3DjVTmbEAjUNX6FgfAmQ+ypJfHUsqUJOYNCBUp1h8lqmtC+0mXJ+JjsWx4KAVTkk1vKd1hLQPvEviSuw==

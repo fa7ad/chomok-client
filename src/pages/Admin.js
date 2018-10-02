@@ -32,7 +32,13 @@ class Admin extends PureComponent {
       key: 'offers',
       name: 'OFFERS',
       icon: 'bars'
-    }
+    },
+    {
+      key: 'add-offer',
+      name: 'ADD OFFER',
+      icon: 'plus'
+    },
+    { key: 'zones', name: 'ZONES', icon: 'select' }
   ]
 
   contentStyle = {
@@ -81,6 +87,19 @@ class Admin extends PureComponent {
         </Layout>
       </Layout>
     )
+  }
+
+  componentDidMount () {
+    fetch('/api/loggedIn', { credentials: 'include' })
+      .then(r => r.json())
+      .then(res => {
+        if (!res && !res.ok) {
+          navigate('/login')
+        }
+      })
+      .catch(e => {
+        navigate('/login')
+      })
   }
 
   navigate = addr => e => {

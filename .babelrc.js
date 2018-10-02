@@ -7,6 +7,7 @@ const presetConf = {
 // plugins
 const pluginConf = {
   '@babel/plugin-proposal-class-properties': {},
+  'emotion': {},
   'auto-import': {
     declarations: [
       {

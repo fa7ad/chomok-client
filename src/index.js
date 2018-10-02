@@ -9,7 +9,8 @@ import App from './App'
 
 setConfig({
   onComponentRegister: (type, name, file) =>
-    file.indexOf('node_modules') > 0 && cold(type)
+    file.indexOf('node_modules') > 0 && cold(type),
+  logLevel: false
 })
 
 const render = Component => () =>
