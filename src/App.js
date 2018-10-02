@@ -58,7 +58,7 @@ class App extends PureComponent {
         <Router id='page'>
           <Home path='/' />
           <Offer path='/offer/:zone' />
-          <Redirect path='/admin' to='/admin/home' />
+          <Redirect from='/admin' path='/admin' to='/admin/home' />
           <Admin path='/admin/:page' render={this.adminPage} />
           <Login path='/login' />
           <NotFound default />

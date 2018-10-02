@@ -26,7 +26,5 @@ const pluginConf = {
 // combine presets and plugins
 const presets = Array.from(Object.entries(presetConf))
 const plugins = Array.from(Object.entries(pluginConf))
-if (process.env.BABEL_ENV !== 'production')
-  plugins.unshift('react-hot-loader/babel')
 
 module.exports = { presets, plugins }
