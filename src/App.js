@@ -1,4 +1,3 @@
-import { hot } from 'react-hot-loader'
 import { navigate, Link, Location, Redirect } from '@reach/router'
 
 // UI components
@@ -131,4 +130,4 @@ class App extends PureComponent {
   }
 }
 
-export default hot(module)(App)
+export default App
