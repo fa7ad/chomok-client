@@ -91,7 +91,14 @@ class AddOffer extends React.PureComponent {
         <FormItem>
           {getFieldDecorator('percentage', {
             rules: [{ required: true, message: 'Please enter a percentage!' }]
-          })(<Input />)}
+          })(
+            <Input
+              type='number'
+              min={1}
+              max={100}
+              placeholder='Enter a percentage'
+            />
+          )}
         </FormItem>
         <FormItem>
           <Button

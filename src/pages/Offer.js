@@ -62,7 +62,7 @@ const WheelPin = styled(Icon)`
   z-index: 2;
 `
 
-const rand = (min, max) => min + Math.floor(Math.random() * (max-min))
+const rand = (min, max) => min + Math.floor(Math.random() * (max - min))
 
 const spin = css`
   animation: spin 2s ease-out 1;
@@ -72,7 +72,7 @@ const spin = css`
       transform: rotate(143deg);
     }
     to {
-      transform: rotate(${143 + (360 * rand(3, 10))}deg);
+      transform: rotate(${143 + 360 * rand(3, 10)}deg);
     }
   }
 `
@@ -84,11 +84,15 @@ class Offer extends React.PureComponent {
   }
   render () {
     const { zone, style } = this.props
-    if (!this.state.offer) return <Wrapper style={style}>
-      <Box>
-        <h1>No offer found!</h1>
-      </Box>
-    </Wrapper>
+    if (!this.state.offer) {
+      return (
+        <Wrapper style={style}>
+          <Box>
+            <h1>No offer found!</h1>
+          </Box>
+        </Wrapper>
+      )
+    }
 
     if (this.state.offer === 'loading') return <Loading />
 
@@ -96,10 +100,7 @@ class Offer extends React.PureComponent {
       <>
         <Section dark style={style} className={jcsb}>
           <Zone>
-            <Icon
-              type='pushpin'
-              style={{ transform: 'rotateY(180deg)', margin: '0 5px' }}
-            />
+            <Icon type='environment' theme='filled' />
             <span>{zone}</span>
           </Zone>
           <HexImg data-bg={this.state.offer.image} data-size='40vmin' />

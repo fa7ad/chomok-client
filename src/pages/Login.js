@@ -80,7 +80,8 @@ class Login extends React.PureComponent {
 
     this.setState({ progress: 'loading' })
 
-    const { username, password } = this.state
+    const { username: uname, password } = this.state
+    const username = uname.toLowerCase()
     fetch('/api/login', {
       method: 'POST',
       headers: {
