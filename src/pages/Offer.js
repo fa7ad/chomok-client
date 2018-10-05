@@ -4,6 +4,7 @@ import { Icon } from 'antd'
 import styled, { css, cx } from 'react-emotion'
 
 import { Section, Button } from '../components/Layout'
+import { Wrapper, Box } from './NotFound'
 
 import wheel from '../img/wheelofluck.png'
 
@@ -61,7 +62,7 @@ const WheelPin = styled(Icon)`
 `
 
 const spin = css`
-  animation: spin 200ms linear 5;
+  animation: spin 500ms ease-out 3;
   transform-origin: center center;
   @keyframes spin {
     from {
@@ -80,7 +81,11 @@ class Offer extends React.PureComponent {
   }
   render () {
     const { zone, style } = this.props
-    if (!this.state.offer) return null
+    if (!this.state.offer) return <Wrapper style={style}>
+      <Box>
+        <h1>No offer found!</h1>
+      </Box>
+    </Wrapper>
     return (
       <>
         <Section dark style={style} className={jcsb}>

@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'react-emotion'
 
-const Wrapper = styled('div')`
+export const Wrapper = styled('div')`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-const Box = styled('div')`
+export const Box = styled('div')`
   background-color: rgba(255, 255, 255, 0.85);
   box-shadow: 0 0 5px rgba(255, 255, 255, 0.85);
   border-radius: 5px;
