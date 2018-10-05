@@ -2,18 +2,17 @@
 const fse = require('fs-extra')
 const path = require('path')
 
-const serverDir = path.resolve(__dirname, '..', 'chomok-server')
+const serverDir = path.resolve(__dirname, '..', '..', 'chomok-server')
 
 fse
   .emptyDir(path.join(serverDir, 'build'))
   .then(e => {
-    console.log(e)
     return fse.copy(
-      path.join(__dirname, 'build'),
-      path.join(serverDir, 'build')
+      path.resolve(__dirname, '..', 'build'),
+      path.resolve(serverDir, 'build')
     )
   })
   .then(e => {
-    console.log('Done!', e)
+    console.log('Done!')
   })
   .catch(console.error)
