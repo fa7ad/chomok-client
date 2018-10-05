@@ -13,6 +13,10 @@ const Logo = styled('img')`
   cursor: pointer;
 `
 
+const FullLayout = styled(Layout)`
+  min-height: 100vh;
+`
+
 const { Header, Content, Footer, Sider } = Layout
 
 class Admin extends React.PureComponent {
@@ -25,22 +29,11 @@ class Admin extends React.PureComponent {
   }
 
   pages = [
-    {
-      key: 'home',
-      name: 'HOME',
-      icon: 'home'
-    },
-    {
-      key: 'offers',
-      name: 'OFFERS',
-      icon: 'bars'
-    },
-    {
-      key: 'add-offer',
-      name: 'ADD OFFER',
-      icon: 'plus'
-    },
-    { key: 'zones', name: 'ZONES', icon: 'select' }
+    { key: 'home', name: 'HOME', icon: 'home' },
+    { key: 'offers', name: 'OFFERS', icon: 'bars' },
+    { key: 'add-offer', name: 'ADD OFFER', icon: 'plus' },
+    { key: 'zones', name: 'ZONES', icon: 'environment' },
+    { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' }
   ]
 
   contentStyle = {
@@ -52,7 +45,7 @@ class Admin extends React.PureComponent {
 
   render () {
     return (
-      <Layout style={{ minHeight: '100vh' }}>
+      <FullLayout>
         <Sider
           collapsible
           breakpoint='sm'
@@ -87,7 +80,7 @@ class Admin extends React.PureComponent {
             Chomok ©2018 Created by @fa7ad
           </Footer>
         </Layout>
-      </Layout>
+      </FullLayout>
     )
   }
 

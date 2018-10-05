@@ -27,32 +27,32 @@ class AddOffer extends React.PureComponent {
     e.preventDefault()
     this.setState({ progress: 'loading' })
     this.props.form.validateFieldsAndScroll((err, values) => {
-      if (!err) {
-        tob64(values.image[0])
-          .then(image =>
-            JSON.stringify({ ...values, percentage: +values.percentage, image })
-          )
-          .then(body =>
-            fetch('/api/offers', {
-              credentials: 'include',
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body
-            })
-          )
-          .then(r => r.json())
-          .then(rep => {
-            if (rep.ok) {
-              this.setState({ progress: 'check' })
-              navigate('/admin/offers')
-            } else throw new Error('Something wrong, again!')
+      if (err) return this.setState({ progress: 'close' })
+      tob64(values.image[0])
+        .then(image =>
+          JSON.stringify({ ...values, percentage: +values.percentage, image })
+        )
+        .then(body =>
+          fetch('/api/offers', {
+            credentials: 'include',
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body
           })
-          .catch(e => console.error(e))
-      } else {
-        this.setState({ progress: 'close' })
-      }
+        )
+        .then(r => r.json())
+        .then(rep => {
+          if (rep.ok) {
+            this.setState({ progress: 'check' })
+            navigate('/admin/offers')
+          } else throw new Error('Something wrong, again!')
+        })
+        .catch(e => {
+          this.setState({ progress: 'close' })
+          console.error(e)
+        })
     })
   }
 
@@ -104,7 +104,7 @@ class AddOffer extends React.PureComponent {
           <Button
             type={this.state.progress === 'close' ? 'danger' : 'primary'}
             htmlType='submit'>
-            <Icon type='plus' />
+            <Icon type={this.state.progress} />
           </Button>
         </FormItem>
       </Form>

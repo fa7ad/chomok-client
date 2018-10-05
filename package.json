@@ -2,6 +2,7 @@
   "name": "chomok",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://chomok.xyz",
   "dependencies": {
     "@reach/router": "^1.1.1",
     "antd": "^3.9.2",
@@ -19,6 +20,7 @@
     "react-transition-group": "^2.5.0"
   },
   "devDependencies": {
+    "eslint": "^5.6.1",
     "eslint-config-standard": "^12.0.0",
     "eslint-config-standard-react": "^7.0.2",
     "eslint-plugin-import": "^2.14.0",
@@ -26,11 +28,13 @@
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-standard": "^4.0.0",
+    "fs-extra": "^7.0.0",
     "react-scripts": "2.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "postbuild": "./bin/deploy.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

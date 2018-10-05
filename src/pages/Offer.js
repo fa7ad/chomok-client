@@ -35,11 +35,11 @@ const HexImg = styled('div')`
   width: ${p => p['data-size']};
   background-image: ${p => `url(${p['data-bg']})`};
   background-position: center center;
-  background-size: auto 100%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   transition: background-size 150ms ease;
   &:hover {
-    background-size: auto 120%;
+    background-size: 120% 120%;
   }
 `
 
@@ -64,7 +64,7 @@ const WheelPin = styled(Icon)`
 
 const rand = (min, max) => min + Math.floor(Math.random() * (max - min))
 
-const spin = css`
+const spin = () => css`
   animation: spin 2s ease-out 1;
   transform-origin: center center;
   @keyframes spin {
@@ -119,7 +119,7 @@ class Offer extends React.PureComponent {
               type='caret-down'
             />
             <Wheel
-              className={cx({ [spin]: this.state.spinning })}
+              className={cx({ [spin()]: this.state.spinning })}
               src={wheel}
               alt='wheel'
               onAnimationEnd={this.stopSpin}

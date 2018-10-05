@@ -63,6 +63,10 @@ const ZonesAdmin = Loadable({
   loading,
   loader: _ => import('./pages/_admin/Zones')
 })
+const AddZoneAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/AddZone')
+})
 
 class App extends React.PureComponent {
   logout = e => {
@@ -172,6 +176,7 @@ class App extends React.PureComponent {
     if (page === 'offers') return <OffersAdmin />
     if (page === 'add-offer') return <AddOfferAdmin />
     if (page === 'zones') return <ZonesAdmin />
+    if (page === 'add-zone') return <AddZoneAdmin />
   }
 }
 
