@@ -5,6 +5,7 @@ import styled, { css, cx } from 'react-emotion'
 
 import { Section, Button } from '../components/Layout'
 import { Wrapper, Box } from './NotFound'
+import Loading from '../components/Loading'
 
 import wheel from '../img/wheelofluck.png'
 
@@ -61,22 +62,24 @@ const WheelPin = styled(Icon)`
   z-index: 2;
 `
 
+const rand = (min, max) => min + Math.floor(Math.random() * (max-min))
+
 const spin = css`
-  animation: spin 500ms ease-out 3;
+  animation: spin 2s ease-out 1;
   transform-origin: center center;
   @keyframes spin {
     from {
       transform: rotate(143deg);
     }
     to {
-      transform: rotate(503deg);
+      transform: rotate(${143 + (360 * rand(3, 10))}deg);
     }
   }
 `
 
 class Offer extends React.PureComponent {
   state = {
-    offer: null,
+    offer: 'loading',
     spinning: false
   }
   render () {
@@ -86,6 +89,9 @@ class Offer extends React.PureComponent {
         <h1>No offer found!</h1>
       </Box>
     </Wrapper>
+
+    if (this.state.offer === 'loading') return <Loading />
+
     return (
       <>
         <Section dark style={style} className={jcsb}>
@@ -127,6 +133,7 @@ class Offer extends React.PureComponent {
     fetch('/api/offers/dhaka/' + this.props.zone)
       .then(r => r.json())
       .then(reply => {
+        if (!reply.ok) this.setState({ offer: false })
         this.setState({ offer: reply.data })
       })
   }
