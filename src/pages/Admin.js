@@ -93,9 +93,7 @@ class Admin extends React.PureComponent {
     fetch('/api/loggedIn', { credentials: 'include' })
       .then(r => r.json())
       .then(res => {
-        if (!res && !res.ok) {
-          navigate('/login')
-        }
+        if (!res.ok) navigate('/login')
       })
       .catch(e => {
         navigate('/login')
