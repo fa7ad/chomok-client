@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Icon } from 'antd'
 import styled, { css, cx } from 'react-emotion'
 
@@ -25,7 +27,7 @@ const Zone = styled('div')`
   }
 `
 
-const HexImg = styled.div`
+const HexImg = styled('div')`
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   min-height: ${p => p['data-size']};
   width: ${p => p['data-size']};
@@ -39,13 +41,13 @@ const HexImg = styled.div`
   }
 `
 
-const Wheel = styled.img`
+const Wheel = styled('img')`
   position: relative;
   width: 80%;
   transform: rotate(143deg);
 `
 
-const WheelWrapper = styled.div`
+const WheelWrapper = styled('div')`
   display: flex;
   flex-direction: column;
   justify-content: center;

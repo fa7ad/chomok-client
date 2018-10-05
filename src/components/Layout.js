@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled, { css, cx } from 'react-emotion'
 
 export const cdark = css`

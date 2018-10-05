@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Form, Select, Button, Input, Icon } from 'antd'
 import ImageUploader from 'react-images-upload'
 import { navigate } from '@reach/router'

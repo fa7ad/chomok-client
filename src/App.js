@@ -1,3 +1,4 @@
+import React from 'react'
 import { navigate, Link, Location, Redirect } from '@reach/router'
 
 // UI components
@@ -153,7 +154,7 @@ class App extends React.PureComponent {
     )
   }
 
-  getBurgerMenu = ({ Location }) =>
+  getBurgerMenu = ({ location }) =>
     !/admin/.test(location.href) ? (
       <BurgerMenu outerContainerId='root' pageWrapId='page'>
         <Link to='/'>Home</Link>

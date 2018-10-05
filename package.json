@@ -1,52 +1,39 @@
 {
-  "name": "chomok-client",
+  "name": "chomok",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
     "@reach/router": "^1.1.1",
     "antd": "^3.9.2",
     "emotion": "^9.2.10",
     "immutable": "^3.8.2",
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
-    "react": "^16.5.1",
     "react-burger-menu": "^2.5.2",
-    "react-dom": "^16.5.1",
     "react-emotion": "^9.2.10",
     "react-images-upload": "^1.2.3",
     "react-loadable": "^5.5.0",
     "react-spinners": "^0.4.5",
     "react-transition-group": "^2.5.0"
   },
-  "scripts": {
-    "start": "node bin/parcel.js",
-    "build": "parcel build index.html --no-source-maps"
-  },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/preset-react": "^7.0.0",
-    "babel-eslint": "^10.0.1",
-    "babel-plugin-auto-import": "^0.8.0",
-    "babel-plugin-emotion": "^9.2.11",
-    "babel-plugin-import": "^1.9.1",
-    "cross-fetch": "^2.2.2",
-    "eslint": "^5.6.0",
-    "eslint-config-standard": "^12.0.0",
-    "eslint-config-standard-react": "^7.0.2",
-    "eslint-plugin-import": "^2.14.0",
-    "eslint-plugin-node": "^7.0.1",
-    "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-react": "^7.11.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "express": "^4.16.3",
-    "http-proxy-middleware": "^0.19.0",
-    "parcel-bundler": "^1.10.1",
-    "parcel-plugin-bundle-visualiser": "^1.2.0"
+    "react-scripts": "2.0.4"
   },
-  "proxy": {
-    "path": "/api",
-    "target": "http://localhost:3333/api"
-  }
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">10%",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "proxy": "http://localhost:3003"
 }

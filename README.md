@@ -1,2 +1,2 @@
-# chmok-client
+# chomok-client
 

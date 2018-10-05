@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'react-emotion'
 import { navigate } from '@reach/router'
 import { Layout, Menu, Icon } from 'antd'

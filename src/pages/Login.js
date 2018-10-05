@@ -1,3 +1,5 @@
+import React from 'react'
+import PropTypes from 'prop-types'
 import { Icon, Input, Button } from 'antd'
 import { navigate } from '@reach/router'
 
@@ -10,7 +12,7 @@ const Wrapper = styled('div')`
   justify-content: center;
 `
 
-const Box = styled.form`
+const Box = styled('form')`
   background-color: rgba(55, 55, 55, 0.85);
   box-shadow: 0 0 5px rgba(55, 55, 55, 0.85);
   border-radius: 5px;
