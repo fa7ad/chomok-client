@@ -5,17 +5,18 @@ export default styled(Icon)`
   font-size: 24px;
   position: absolute;
   cursor: pointer;
-  top: 10px;
-  right: 10px;
+  top: 5px;
+  right: 5px;
   z-index: 2;
   display: block;
 
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
   transition: all 250ms ease;
+  padding: 5px;
 
   &:hover {
-    color: #111;
-    filter: drop-shadow(0 0 1px #fff);
-
+    filter: none;
+    background-color: #CC0058;
+    border-radius: 50%;
   }
 `
