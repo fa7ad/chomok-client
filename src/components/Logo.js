@@ -1,10 +1,10 @@
 import styled from 'react-emotion'
 
 export default styled('img')`
-  width: 70px;
+  width: 80px;
   position: absolute;
   cursor: pointer;
-  top: 10px;
+  top: 2px;
   left: calc(50% - 35px);
   z-index: 2;
 

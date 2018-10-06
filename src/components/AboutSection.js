@@ -31,4 +31,7 @@ export const Content = styled('div')`
   text-transform: uppercase;
   font-family: Montserrat, sans-serif;
   margin-bottom: 1.5em;
+
+  max-height: 50vh;
+  overflow: hidden;
 `

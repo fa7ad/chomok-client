@@ -45,20 +45,20 @@ const HexImg = styled('div')`
 
 const Wheel = styled('img')`
   position: relative;
-  width: 80%;
+  width: 75%;
   transform: rotate(143deg);
 `
 
 const WheelWrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
 `
 
 const WheelPin = styled(Icon)`
   position: relative;
-  top: 42px;
+  top: 40px;
   z-index: 2;
 `
 
