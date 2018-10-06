@@ -16,7 +16,6 @@ import Loadable from 'react-loadable'
 
 // Resources
 import logoImg from './img/logo.png'
-import userImg from './img/user.png'
 
 const Home = Loadable.Map({
   loading,
@@ -134,9 +133,7 @@ class App extends React.PureComponent {
 
   componentDidMount () {
     this.getLoginState()
-    setTimeout(this.getLoginState, 500)
-    setTimeout(this.getLoginState, 1500)
-    setTimeout(this.getLoginState, 2500)
+    setTimeout(this.getLoginState, 900)
   }
 
   getLogoAndUser = ({ location }) => {
@@ -149,8 +146,7 @@ class App extends React.PureComponent {
           overlay={<Menu children={this.state.menuItems} />}
           trigger={['click']}>
           <UserIcon
-            alt='User Icon'
-            src={userImg}
+            type='user'
             onMouseOver={this.getLoginState}
           />
         </Dropdown>

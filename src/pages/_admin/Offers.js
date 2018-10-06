@@ -1,6 +1,8 @@
 import React from 'react'
-import { List, Avatar, Button, Tag } from 'antd'
+import moment from 'moment'
+import { toUpper } from 'ramda'
 import { navigate } from '@reach/router'
+import { List, Avatar, Button, Tag } from 'antd'
 
 class AdminOffersPage extends React.PureComponent {
   state = {
@@ -60,7 +62,7 @@ class AdminOffersPage extends React.PureComponent {
         <b>Name:</b> {item.partner.name}
       </Tag>
       <Tag color='orange'>
-        <b>Zone:</b> {item.zone.division + '/' + item.zone.name}
+        <b>Zone:</b> {toUpper(item.zone.division + ' > ' + item.zone.name)}
       </Tag>
     </>
   )
@@ -68,13 +70,16 @@ class AdminOffersPage extends React.PureComponent {
   getItemDesc = item => (
     <>
       <Tag color='magenta'>
-        <b>Date: </b> {item.date}
+        <b>Date: </b> {moment(item.date, 'YYYYMMDD').format('DD-MM-YYYY')}
       </Tag>
       <Tag color='blue'>
         <b>Request:</b> {item.reqBy.length}
       </Tag>
       <Tag color='green'>
         <b>Used:</b> {item.useBy.length}
+      </Tag>
+      <Tag color='pink'>
+        <b>Unused:</b> {item.reqBy.length - item.useBy.length}
       </Tag>
     </>
   )

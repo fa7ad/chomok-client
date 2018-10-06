@@ -1,11 +1,25 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Form, Select, Button, Input, Icon } from 'antd'
-import ImageUploader from 'react-images-upload'
+import { css } from 'react-emotion'
 import { navigate } from '@reach/router'
+import ImageUploader from 'react-images-upload'
+import { Form, Select, Button, Input, Icon, DatePicker } from 'antd'
 
 const FormItem = Form.Item
 const { Option } = Select
+
+const formStyle = css`
+  text-align: left;
+  .ant-row {
+    max-width: 50vw;
+  }
+  .fileContainer {
+    box-shadow: none;
+  }
+  .chooseFileButton {
+    border-radius: 3px;
+  }
+`
 
 const tob64 = file =>
   new Promise(resolve => {
@@ -28,6 +42,7 @@ class AddOffer extends React.PureComponent {
     this.setState({ progress: 'loading' })
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (err) return this.setState({ progress: 'close' })
+      values.date = values.date.format('YYYYMMDD')
       tob64(values.image[0])
         .then(image =>
           JSON.stringify({ ...values, percentage: +values.percentage, image })
@@ -60,7 +75,7 @@ class AddOffer extends React.PureComponent {
     const { getFieldDecorator } = this.props.form
 
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} className={formStyle}>
         <FormItem>
           {getFieldDecorator('image', {
             rules: [{ required: true, message: 'Please upload an image!' }]
@@ -73,6 +88,17 @@ class AddOffer extends React.PureComponent {
               maxFileSize={2098000}
             />
           )}
+        </FormItem>
+        <FormItem>
+          {getFieldDecorator('date', {
+            rules: [
+              {
+                type: 'object',
+                required: true,
+                message: 'Please select a date!'
+              }
+            ]
+          })(<DatePicker format='DD-MM-YYYY' />)}
         </FormItem>
         <FormItem>
           {getFieldDecorator('zoneid', {

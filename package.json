@@ -8,6 +8,7 @@
     "antd": "^3.9.2",
     "emotion": "^9.2.10",
     "immutable": "^3.8.2",
+    "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "ramda": "^0.25.0",
     "react": "^16.5.2",
