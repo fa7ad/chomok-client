@@ -7,65 +7,14 @@ import BurgerMenu from 'react-burger-menu/lib/menus/slide'
 
 // Custom components
 import Logo from './components/Logo'
-import loading from './components/Loading'
 import UserIcon from './components/UserIcon'
 import Router from './components/TransitionRouter'
 
 // Routes wrapped with react-loadable
-import Loadable from 'react-loadable'
+import { Home, Offer, Admin, Login, NotFound } from './asyncRoutes'
 
 // Resources
 import logoImg from './img/logo.png'
-
-const Home = Loadable.Map({
-  loading,
-  loader: {
-    Home: () => import('./pages/Home'),
-    navItems: () => fetch('/api/zones/').then(r => r.json())
-  },
-  render (loaded, props) {
-    const Home = loaded.Home.default
-    const navItems = loaded.navItems.data
-    return <Home {...props} navItems={navItems} />
-  }
-})
-
-const Offer = Loadable({
-  loading,
-  loader: _ => import('./pages/Offer')
-})
-
-const NotFound = Loadable({
-  loading,
-  loader: _ => import('./pages/NotFound')
-})
-
-const Admin = Loadable({
-  loading,
-  loader: _ => import('./pages/Admin')
-})
-
-const Login = Loadable({
-  loading,
-  loader: _ => import('./pages/Login')
-})
-
-const OffersAdmin = Loadable({
-  loading,
-  loader: _ => import('./pages/_admin/Offers')
-})
-const AddOfferAdmin = Loadable({
-  loading,
-  loader: _ => import('./pages/_admin/AddOffer')
-})
-const ZonesAdmin = Loadable({
-  loading,
-  loader: _ => import('./pages/_admin/Zones')
-})
-const AddZoneAdmin = Loadable({
-  loading,
-  loader: _ => import('./pages/_admin/AddZone')
-})
 
 class App extends React.PureComponent {
   logout = e => {
@@ -93,10 +42,20 @@ class App extends React.PureComponent {
       Logout
     </Menu.Item>
   ]
+
   state = {
     loggedIn: false,
     menuItems: this.menu.slice(0, 1)
   }
+
+  adminPages = [
+    { key: 'home', name: 'HOME', icon: 'home' },
+    { key: 'offers', name: 'OFFERS', icon: 'bars' },
+    { key: 'add-offer', name: 'ADD OFFER', icon: 'plus' },
+    { key: 'zones', name: 'ZONES', icon: 'environment' },
+    { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' },
+    { key: 'add-partner', name: 'ADD PARTNER', icon: 'usergroup-add' }
+  ]
 
   render () {
     return (
@@ -106,8 +65,10 @@ class App extends React.PureComponent {
         <Router id='page'>
           <Home path='/' />
           <Offer path='/offer/:zone' />
-          <Redirect from='/admin' path='/admin' to='/admin/home' />
-          <Admin path='/admin/:page' render={this.adminPage} />
+          <Redirect from='/admin' path='/admin' to='/admin/home' noThrow />
+          <Admin path='/admin/:page' pages={this.adminPages}>
+            {this.adminPage}
+          </Admin>
           <Login path='/login' />
           <NotFound default />
         </Router>
@@ -145,10 +106,7 @@ class App extends React.PureComponent {
           path='/!login'
           overlay={<Menu children={this.state.menuItems} />}
           trigger={['click']}>
-          <UserIcon
-            type='user'
-            onMouseOver={this.getLoginState}
-          />
+          <UserIcon type='user' onMouseOver={this.getLoginState} />
         </Dropdown>
       </>
     )
@@ -168,11 +126,23 @@ class App extends React.PureComponent {
       navigate('/login')
       return null
     }
-    if (page === 'home') return <h1>:)</h1>
-    if (page === 'offers') return <OffersAdmin />
-    if (page === 'add-offer') return <AddOfferAdmin />
-    if (page === 'zones') return <ZonesAdmin />
-    if (page === 'add-zone') return <AddZoneAdmin />
+
+    switch (page) {
+      case 'home':
+        return <h1>:)</h1>
+      case 'offers':
+        return <Admin.Offers />
+      case 'add-offer':
+        return <Admin.AddOffer />
+      case 'zones':
+        return <Admin.Zones />
+      case 'add-zone':
+        return <Admin.AddZone />
+      case 'add-partner':
+        return <Admin.AddPartner />
+      default:
+        return <h1>Invalid route xD</h1>
+    }
   }
 }
 

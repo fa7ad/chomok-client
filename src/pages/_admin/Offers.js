@@ -93,9 +93,9 @@ class AdminOffersPage extends React.PureComponent {
       .then(({ ok }) => {
         if (ok) {
           this.setState(p => {
-            const copy = { ...this.state }
-            copy.offers.splice(idx, 1)
-            return copy
+            const offers = p.offers.slice()
+            offers.splice(idx, 1)
+            return { offers }
           })
         } else {
           throw new Error('Something went wrong')

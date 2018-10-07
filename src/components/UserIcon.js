@@ -13,10 +13,10 @@ export default styled(Icon)`
   filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.25));
   transition: all 250ms ease;
   padding: 5px;
+  border-radius: 50%;
 
   &:hover {
     filter: none;
     background-color: #CC0058;
-    border-radius: 50%;
   }
 `

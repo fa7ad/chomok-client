@@ -17,6 +17,22 @@ const FullLayout = styled(Layout)`
   min-height: 100vh;
 `
 
+const ContentInner = styled('div')`
+  padding: 24px;
+  background: #fff;
+  min-height: 20vmin;
+  margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  >div, .ant-form {
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+  .ant-form {
+    max-width: 600px;
+  }
+`
+
 const { Header, Content, Footer, Sider } = Layout
 
 class Admin extends React.PureComponent {
@@ -28,22 +44,8 @@ class Admin extends React.PureComponent {
     this.setState({ collapsed })
   }
 
-  pages = [
-    { key: 'home', name: 'HOME', icon: 'home' },
-    { key: 'offers', name: 'OFFERS', icon: 'bars' },
-    { key: 'add-offer', name: 'ADD OFFER', icon: 'plus' },
-    { key: 'zones', name: 'ZONES', icon: 'environment' },
-    { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' }
-  ]
-
-  contentStyle = {
-    padding: 24,
-    background: '#fff',
-    minHeight: 360,
-    margin: '16px 0'
-  }
-
   render () {
+    const renderProp = this.props.render || this.props.children.props.children
     return (
       <FullLayout>
         <Sider
@@ -61,7 +63,7 @@ class Admin extends React.PureComponent {
             defaultSelectedKeys={[this.props.page]}
             mode='vertical'
             style={{ textAlign: 'left' }}>
-            {this.pages.map(this.mapMenu)}
+            {this.props.pages.map(this.mapMenu)}
           </Menu>
         </Sider>
         <Layout>
@@ -70,11 +72,7 @@ class Admin extends React.PureComponent {
             {this.props.page}
           </Header>
           <Content style={{ margin: '0 16px' }}>
-            <div style={this.contentStyle} default>
-              {this.props.render
-                ? this.props.render(this.props.page)
-                : this.props.children}
-            </div>
+            <ContentInner>{renderProp(this.props.page)}</ContentInner>
           </Content>
           <Footer style={{ textAlign: 'center' }}>
             Chomok ©2018 Created by @fa7ad
@@ -108,6 +106,7 @@ class Admin extends React.PureComponent {
 
   static propTypes = {
     page: PropTypes.string,
+    pages: PropTypes.arrayOf(PropTypes.object),
     render: PropTypes.func,
     children: PropTypes.node
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import moment from 'moment'
 import PropTypes from 'prop-types'
 import { css } from 'react-emotion'
 import { navigate } from '@reach/router'
@@ -10,9 +11,7 @@ const { Option } = Select
 
 const formStyle = css`
   text-align: left;
-  .ant-row {
-    max-width: 50vw;
-  }
+
   .fileContainer {
     box-shadow: none;
   }
@@ -57,7 +56,10 @@ class AddOffer extends React.PureComponent {
             body
           })
         )
-        .then(r => r.json())
+        .then(r => {
+          if (r.status === 401) navigate('/login')
+          return r.json()
+        })
         .then(rep => {
           if (rep.ok) {
             this.setState({ progress: 'check' })
@@ -97,7 +99,8 @@ class AddOffer extends React.PureComponent {
                 required: true,
                 message: 'Please select a date!'
               }
-            ]
+            ],
+            initialValue: moment()
           })(<DatePicker format='DD-MM-YYYY' />)}
         </FormItem>
         <FormItem>
@@ -175,6 +178,6 @@ class AddOffer extends React.PureComponent {
   }
 }
 
-const OfferAdder = Form.create()(AddOffer)
+const ControlledAddOffer = Form.create()(AddOffer)
 
-export default OfferAdder
+export default ControlledAddOffer

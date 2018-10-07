@@ -1,6 +1,7 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { Icon } from 'antd'
+import PropTypes from 'prop-types'
+import { navigate } from '@reach/router'
 import styled, { css, cx } from 'react-emotion'
 
 import { Section, Button } from '../components/Layout'
@@ -26,6 +27,7 @@ const Zone = styled('div')`
   span {
     font-weight: 300;
     font-size: 1.1em;
+    margin: 0 5px;
   }
 `
 
@@ -132,7 +134,10 @@ class Offer extends React.PureComponent {
 
   componentDidMount () {
     fetch('/api/offers/dhaka/' + this.props.zone)
-      .then(r => r.json())
+      .then(r => {
+        if (r.status === 401) navigate('/login')
+        return r.json()
+      })
       .then(reply => {
         if (!reply.ok) this.setState({ offer: false })
         this.setState({ offer: reply.data })

@@ -1,5 +1,5 @@
-import { map, toLower } from 'ramda'
 import PropTypes from 'prop-types'
+import { map, toLower } from 'ramda'
 import { navigate } from '@reach/router'
 import React, { PureComponent } from 'react'
 import { Form, Button, Input, Icon } from 'antd'
@@ -25,7 +25,10 @@ class AddZone extends PureComponent {
         },
         body
       })
-        .then(r => r.json())
+        .then(r => {
+          if (r.status === 401) navigate('/login')
+          return r.json()
+        })
         .then(rep => {
           if (rep.ok) {
             this.setState({ progress: 'check' })

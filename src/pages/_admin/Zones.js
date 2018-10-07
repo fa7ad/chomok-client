@@ -4,7 +4,7 @@ import { navigate } from '@reach/router'
 
 class AdminZones extends React.PureComponent {
   state = {
-    offers: [],
+    zones: [],
     loading: true
   }
 
@@ -17,7 +17,7 @@ class AdminZones extends React.PureComponent {
       <List
         loading={this.state.loading}
         itemLayout='horizontal'
-        dataSource={this.state.offers}
+        dataSource={this.state.zones}
         renderItem={this.listMapper}
       />
     )
@@ -29,9 +29,9 @@ class AdminZones extends React.PureComponent {
         if (r.status === 401) navigate('/login')
         return r.json()
       })
-      .then(({ ok, data }) => {
+      .then(({ ok, data: zones }) => {
         if (!ok) throw new Error('Something went wrong')
-        this.setState({ offers: data, loading: false })
+        this.setState({ zones, loading: false })
       })
       .catch(e => {
         console.error(e)
@@ -74,9 +74,9 @@ class AdminZones extends React.PureComponent {
       .then(({ ok }) => {
         if (ok) {
           this.setState(p => {
-            const copy = { ...this.state }
-            copy.offers.splice(idx, 1)
-            return copy
+            const zones = p.zones.slice()
+            zones.splice(idx, 1)
+            return { zones }
           })
         } else {
           throw new Error('Something went wrong')
