@@ -35,7 +35,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "postbuild": "./bin/deploy.js",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
