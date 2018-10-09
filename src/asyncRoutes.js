@@ -15,6 +15,7 @@ export const Home = Loadable.Map({
   }
 })
 
+// Admin-only routes
 export const Admin = Loadable({
   loading,
   loader: _ => import('./pages/Admin')
@@ -39,6 +40,10 @@ Admin.AddZone = Loadable({
 Admin.AddPartner = Loadable({
   loading,
   loader: _ => import('./pages/_admin/AddPartner')
+})
+Admin.AddAdmin = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/AddAdmin')
 })
 
 export const Offer = Loadable({

@@ -54,7 +54,8 @@ class App extends React.PureComponent {
     { key: 'add-offer', name: 'ADD OFFER', icon: 'plus' },
     { key: 'zones', name: 'ZONES', icon: 'environment' },
     { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' },
-    { key: 'add-partner', name: 'ADD PARTNER', icon: 'usergroup-add' }
+    { key: 'add-partner', name: 'ADD PARTNER', icon: 'usergroup-add' },
+    { key: 'add-admin', name: 'ADD ADMIN', icon: 'user-add' }
   ]
 
   render () {
@@ -140,6 +141,8 @@ class App extends React.PureComponent {
         return <Admin.AddZone />
       case 'add-partner':
         return <Admin.AddPartner />
+      case 'add-admin':
+        return <Admin.AddAdmin />
       default:
         return <h1>Invalid route xD</h1>
     }
