@@ -41,6 +41,10 @@ Admin.AddPartner = Loadable({
   loading,
   loader: _ => import('./pages/_admin/AddPartner')
 })
+Admin.Partners = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Partners')
+})
 Admin.AddAdmin = Loadable({
   loading,
   loader: _ => import('./pages/_admin/AddAdmin')

@@ -54,6 +54,7 @@ class App extends React.PureComponent {
     { key: 'add-offer', name: 'ADD OFFER', icon: 'plus' },
     { key: 'zones', name: 'ZONES', icon: 'environment' },
     { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' },
+    { key: 'partners', name: 'PARTNERS', icon: 'team' },
     { key: 'add-partner', name: 'ADD PARTNER', icon: 'usergroup-add' },
     { key: 'add-admin', name: 'ADD ADMIN', icon: 'user-add' }
   ]
@@ -139,6 +140,8 @@ class App extends React.PureComponent {
         return <Admin.Zones />
       case 'add-zone':
         return <Admin.AddZone />
+      case 'partners':
+        return <Admin.Partners />
       case 'add-partner':
         return <Admin.AddPartner />
       case 'add-admin':
