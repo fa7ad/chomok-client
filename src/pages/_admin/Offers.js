@@ -46,7 +46,8 @@ class AdminOffersPage extends React.PureComponent {
         <Button onClick={this.deleteItem(item._id, idx)} type='danger'>
           DELETE!
         </Button>
-      ]}>
+      ]}
+      key={item._id}>
       <List.Item.Meta
         avatar={<Avatar src={item.image} size='large' shape='square' />}
         title={this.getItemTitle(item)}
@@ -56,22 +57,28 @@ class AdminOffersPage extends React.PureComponent {
     </List.Item>
   )
 
-  getItemTitle = item => (
-    <>
-      <Tag color='red'>
-        <b>Name:</b> {item.partner.name}
-      </Tag>
-      <Tag color='orange'>
-        <b>Zone:</b> {toUpper(item.zone.division + ' > ' + item.zone.name)}
-      </Tag>
-    </>
-  )
+  getItemTitle = item => {
+    const date = moment(item.date, 'YYYYMMDD')
+    const isToday = date.isSame(moment(), 'day')
+    const text = date.format('DD-MM-YYYY')
+    return (
+      <>
+        <Tag color={isToday ? 'cyan' : 'magenta'}>
+          <b>Date: </b> {isToday ? 'Today / ' : ''}
+          {text}
+        </Tag>
+        <Tag color='red'>
+          <b>Name:</b> {item.partner.name}
+        </Tag>
+        <Tag color='orange'>
+          <b>Zone:</b> {toUpper(item.zone.division + ' > ' + item.zone.name)}
+        </Tag>
+      </>
+    )
+  }
 
   getItemDesc = item => (
     <>
-      <Tag color='magenta'>
-        <b>Date: </b> {moment(item.date, 'YYYYMMDD').format('DD-MM-YYYY')}
-      </Tag>
       <Tag color='blue'>
         <b>Request:</b> {item.reqBy.length}
       </Tag>

@@ -130,7 +130,7 @@ class App extends React.PureComponent {
 
     switch (page) {
       case 'home':
-        return <h1>:)</h1>
+        return <h1>here be graphs</h1>
       case 'offers':
         return <Admin.Offers />
       case 'add-offer':
