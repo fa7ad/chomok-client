@@ -113,8 +113,8 @@ class AdminAdmins extends React.PureComponent {
       .then(({ ok }) => {
         if (ok) {
           this.setState(p => {
-            const zones = remove(idx, 1, p.zones)
-            return { zones }
+            const admins = remove(idx, 1, [].concat(p.admins))
+            return { admins }
           })
         } else {
           throw new Error('Something went wrong')

@@ -122,8 +122,8 @@ class AdminPartners extends React.PureComponent {
       .then(({ ok }) => {
         if (ok) {
           this.setState(p => {
-            const zones = remove(idx, 1, p.zones)
-            return { zones }
+            const partners = remove(idx, 1, p.partners)
+            return { partners }
           })
         } else {
           throw new Error('Something went wrong')
