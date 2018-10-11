@@ -2,7 +2,7 @@ import React from 'react'
 import { navigate, Link, Location, Redirect } from '@reach/router'
 
 // UI components
-import { Menu, Dropdown } from 'antd'
+import { Menu, Dropdown, Icon } from 'antd'
 import BurgerMenu from 'react-burger-menu/lib/menus/slide'
 
 // Custom components
@@ -22,7 +22,7 @@ class App extends React.PureComponent {
       .then(r => r.json())
       .then(({ ok }) => {
         setTimeout(this.getLoginState, 1000)
-        if (ok) navigate('/')
+        if (ok) window.location.reload()
       })
       .catch(e => console.error(e))
   }
@@ -56,7 +56,9 @@ class App extends React.PureComponent {
     { key: 'add-zone', name: 'ADD ZONE', icon: 'plus' },
     { key: 'partners', name: 'PARTNERS', icon: 'team' },
     { key: 'add-partner', name: 'ADD PARTNER', icon: 'usergroup-add' },
-    { key: 'add-admin', name: 'ADD ADMIN', icon: 'user-add' }
+    { key: 'admins', name: 'ADMINS', icon: 'user' },
+    { key: 'add-admin', name: 'ADD ADMIN', icon: 'user-add' },
+    { key: 'logout', name: 'LOGOUT', icon: 'logout' }
   ]
 
   render () {
@@ -105,7 +107,6 @@ class App extends React.PureComponent {
       <>
         <Logo src={logoImg} alt='Chomok Logo' onClick={this.navigate('/')} />
         <Dropdown
-          path='/!login'
           overlay={<Menu children={this.state.menuItems} />}
           trigger={['click']}>
           <UserIcon type='user' onMouseOver={this.getLoginState} />
@@ -131,7 +132,7 @@ class App extends React.PureComponent {
 
     switch (page) {
       case 'home':
-        return <h1>here be graphs</h1>
+        return <Icon type='home' />
       case 'offers':
         return <Admin.Offers />
       case 'add-offer':
@@ -144,8 +145,18 @@ class App extends React.PureComponent {
         return <Admin.Partners />
       case 'add-partner':
         return <Admin.AddPartner />
+      case 'admins':
+        return <Admin.Admins />
       case 'add-admin':
         return <Admin.AddAdmin />
+      case 'logout':
+        fetch('/api/logout', { credentials: 'include' })
+          .then(r => r.json())
+          .then(({ ok }) => {
+            if (ok) navigate('/')
+          })
+          .catch(e => console.error(e))
+        return 'Logging you out...'
       default:
         return <h1>Invalid route xD</h1>
     }

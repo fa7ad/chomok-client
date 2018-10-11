@@ -37,13 +37,17 @@ Admin.AddZone = Loadable({
   loading,
   loader: _ => import('./pages/_admin/AddZone')
 })
+Admin.Partners = Loadable({
+  loading,
+  loader: _ => import('./pages/_admin/Partners')
+})
 Admin.AddPartner = Loadable({
   loading,
   loader: _ => import('./pages/_admin/AddPartner')
 })
-Admin.Partners = Loadable({
+Admin.Admins = Loadable({
   loading,
-  loader: _ => import('./pages/_admin/Partners')
+  loader: _ => import('./pages/_admin/Admins')
 })
 Admin.AddAdmin = Loadable({
   loading,
