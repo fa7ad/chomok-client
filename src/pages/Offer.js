@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { Icon, Modal } from 'antd'
 import { navigate } from '@reach/router'
 import styled, { css, cx } from 'react-emotion'
+import QrCode from 'qrcode.react'
 
 import { Section, Button } from '../components/Layout'
 import { Wrapper, Box } from './NotFound'
@@ -103,12 +104,12 @@ const qrmodal = css`
   }
 `
 
-const qrModal = function (qr, code) {
+function qrModal (code) {
   Modal.info({
     title: 'Show this code to the partner',
     content: (
       <>
-        <img src={qr} alt='code' />
+        <QrCode value={'chomok://' + code} />
         <h3>{code}</h3>
       </>
     ),
