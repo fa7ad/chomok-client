@@ -4,9 +4,9 @@ import styled, { css, cx } from 'react-emotion'
 
 export const cdark = css`
   background: rgba(0, 0, 0, 0.45);
-
-  &:hover {
-    background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  h1, h2, h3, h4, h5 {
+    color: #fefefe;
   }
 `
 
