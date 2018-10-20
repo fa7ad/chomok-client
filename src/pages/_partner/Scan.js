@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
-import QrReader from 'react-qr-reader'
 import { navigate } from '@reach/router'
 import { Button, Input, Modal } from 'antd'
+import QrCodeScanner from '@sensorfactdev/qr-code-scanner'
 
 const Container = styled('div')`
   display: flex;
@@ -32,22 +32,19 @@ function showQR (data) {
         <h3>Type: {dict[data.offertype]}</h3>
         <h3>Validity: {data.validity}</h3>
       </>
-    )
+    ),
+    onOk: _ => window.location.reload()
   })
 }
 
 class PartnerScan extends React.PureComponent {
   state = {
-    delay: 100,
-    legacy: false,
     manual: ''
   }
 
-  qr = React.createRef()
-
   handleScan = code => {
-    if (code) {
-      fetch(`/api/codes/${code.replace('chomok://', '')}`, {
+    if (code.result) {
+      fetch(`/api/codes/${code.result.replace('chomok://', '')}`, {
         method: 'POST',
         credentials: 'include'
       })
@@ -69,16 +66,13 @@ class PartnerScan extends React.PureComponent {
     }
   }
 
-  openImageDialog = e => {
-    this.qr.current.openImageDialog()
-  }
-
   render () {
-    const previewStyle = {
-      width: '90%',
-      maxWidth: '480px',
-      margin: '0 auto'
-    }
+    // const previewStyle = {
+    //   width: '90%',
+    //   maxWidth: '480px',
+    //   margin: '0 auto'
+    // }
+    const size = Math.min(300, (window.innerWidth * 0.75) | 0)
 
     return (
       <Container>
@@ -91,22 +85,15 @@ class PartnerScan extends React.PureComponent {
           <Button onClick={this.checkManual}>Check</Button>
         </div>
         <div>
-          <QrReader
-            ref={this.qr}
-            delay={this.state.delay}
-            style={previewStyle}
-            onError={this.handleError}
-            onScan={this.handleScan}
-            legacyMode={this.state.legacy}
+          <QrCodeScanner
+            onQrCodeScanned={this.handleScan}
+            width={size}
+            height={size}
+            showAimAssist={false}
           />
-          <Button onClick={this.openImageDialog}>Submit Image QR</Button>
         </div>
       </Container>
     )
-  }
-
-  handleError = () => {
-    this.setState({ legacy: true })
   }
 
   manualInput = e => {
