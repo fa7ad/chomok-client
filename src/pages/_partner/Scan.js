@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { Button, Input } from 'antd'
 import QrReader from 'react-qr-reader'
 import { navigate } from '@reach/router'
+import { Button, Input, Modal } from 'antd'
 
 const Container = styled('div')`
   display: flex;
@@ -18,19 +18,36 @@ const Container = styled('div')`
   }
 `
 
+function showQR (data) {
+  const dict = {
+    perc: 'Percentage Off',
+    special: 'Special Offer',
+    bulk: 'Bulk Discount'
+  }
+  Modal.info({
+    title: 'Valid code found!',
+    content: (
+      <>
+        <h1>Value: {data.value}</h1>
+        <h3>Type: {dict[data.offertype]}</h3>
+        <h3>Validity: {data.validity}</h3>
+      </>
+    )
+  })
+}
+
 class PartnerScan extends React.PureComponent {
   state = {
-    delay: 300,
+    delay: 100,
     legacy: false,
-    result: false,
     manual: ''
   }
 
   qr = React.createRef()
 
   handleScan = code => {
-    if (code && code.startsWith('chomok://')) {
-      fetch('/api/codes/' + code.replace('chomok://', ''), {
+    if (code) {
+      fetch(`/api/codes/${code.replace('chomok://', '')}`, {
         method: 'POST',
         credentials: 'include'
       })
@@ -43,14 +60,12 @@ class PartnerScan extends React.PureComponent {
         })
         .then(res => {
           if (res.ok) {
-            this.setState({ result: res.data })
+            showQR(res.data)
           } else throw new Error('Invalid code')
         })
         .catch(e => {
-          this.setState({ result: false })
+          console.error(e)
         })
-    } else {
-      this.setState({ result: false })
     }
   }
 
@@ -68,12 +83,7 @@ class PartnerScan extends React.PureComponent {
     return (
       <Container>
         <div className='result'>
-          <h3>Result:</h3>
-          <pre>
-            {this.state.result
-              ? JSON.stringify(this.state.result, null, 4)
-              : 'No valid QR found...'}
-          </pre>
+          <pre>No valid QR found...</pre>
         </div>
         <div>
           <h3>Manual Entry</h3>
@@ -104,7 +114,7 @@ class PartnerScan extends React.PureComponent {
   }
 
   checkManual = e => {
-    this.handleScan('chomok://' + this.state.manual)
+    this.handleScan(this.state.manual)
   }
 }
 

@@ -5,6 +5,7 @@
   "homepage": "https://chomok.xyz",
   "dependencies": {
     "@reach/router": "^1.1.1",
+    "@sensorfactdev/qr-code-scanner": "^1.0.10",
     "antd": "^3.9.2",
     "emotion": "^9.2.10",
     "immutable": "^3.8.2",
@@ -20,7 +21,8 @@
     "react-loadable": "^5.5.0",
     "react-qr-reader": "^2.1.1",
     "react-spinners": "^0.4.5",
-    "react-transition-group": "^2.5.0"
+    "react-transition-group": "^2.5.0",
+    "the-qr": "^2.1.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
