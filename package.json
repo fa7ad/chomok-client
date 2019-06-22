@@ -14,7 +14,7 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.2",
     "ramda": "^0.26.0",
-    "react": "^16.5.2",
+    "react": "^16.8.6",
     "react-burger-menu": "^2.5.2",
     "react-dom": "^16.8.6",
     "react-emotion": "^10.0.0",
