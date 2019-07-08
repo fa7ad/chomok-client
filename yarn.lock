@@ -9881,10 +9881,10 @@ react-slick@~0.24.0:
     lodash.debounce "^4.0.8"
     resize-observer-polyfill "^1.5.0"
 
-react-spinners@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.5.5.tgz#9720407ebcff1a28028804905d7646d220efd98a"
-  integrity sha512-CbkrQu+PZ4UZGzCiABQVBQXwuqT6qIRqqa1KasTYm1l9lIwcHWY1nNOeT3KzyWSDGJtFzLNnRUBEFvgdi/1Zyg==
+react-spinners@^0.5.8:
+  version "0.5.8"
+  resolved "https://registry.yarnpkg.com/react-spinners/-/react-spinners-0.5.8.tgz#627b16bb6966b6fd900f8cbc96f85a7dbac9c5a6"
+  integrity sha512-A5YHY1rcs3NI2wEaESaqrnUOwdgPNHlWLRkZZEJny3/OdKMaxGuP6rrnNAvjJHsO5aReq7xtEsosYHVsVSI6Ng==
   dependencies:
     "@emotion/core" "^10.0.4"
     prop-types "^15.5.10"
