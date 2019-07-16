@@ -7,7 +7,7 @@
   "dependencies": {
     "@reach/router": "^1.1.1",
     "@sensorfactdev/qr-code-scanner": "^1.0.10",
-    "antd": "^3.20.1",
+    "antd": "^3.20.3",
     "emotion": "^10.0.14",
     "immutable": "^4.0.0-rc.12",
     "lottery-wheel": "^2.0.0",
