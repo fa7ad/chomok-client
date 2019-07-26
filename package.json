@@ -20,7 +20,7 @@
     "react-emotion": "^10.0.0",
     "react-flexbox-grid": "^2.1.2",
     "react-loadable": "^5.5.0",
-    "react-spinners": "^0.5.12",
+    "react-spinners": "^0.5.13",
     "react-transition-group": "^4.2.1",
     "the-qr": "^2.1.3"
   },
